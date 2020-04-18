@@ -1,0 +1,45 @@
+{
+  "presets": [
+    "module:metro-react-native-babel-preset"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-remove-console"
+      ]
+    },
+    "development": {
+      "presets": [
+        [
+          "module:metro-react-native-babel-preset",
+          {
+            "development": true
+          }
+        ]
+      ]
+    }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "cwd": "babelrc",
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "api": "./src/api",
+          "test": "./test",
+          "underscore": "lodash"
+        },
+        "extensions": [
+          ".android.js",
+          ".ios.js",
+          ".js",
+          ".json"
+        ]
+      }
+    ]
+  ],
+  "retainLines": true
+}
