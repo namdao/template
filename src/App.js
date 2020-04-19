@@ -6,69 +6,43 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import { SafeAreaView, ScrollView, View, Text, StatusBar } from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import React, { useRef } from 'react';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import storeConfig from 'storeConfig';
 import codePush from 'react-native-code-push';
-import styles from 'api/styles';
+import { NavigationContainer } from '@react-navigation/native';
+import { getActiveRouteName, screenTracking } from 'utils/screenTracking';
+import Splash from 'scenes/Splash';
 
+const App = () => {
+  const routeNameRef = useRef();
+  const navigationRef = useRef();
+
+  React.useEffect(() => {
+    const state = navigationRef.current.getRootState();
+    routeNameRef.current = getActiveRouteName(state);
+  }, []);
+
+  return (
+    <>
+      <Provider store={storeConfig.rootStore}>
+        <PersistGate loading={<Splash />} persistor={storeConfig.persistor} />
+        <NavigationContainer
+          ref={navigationRef}
+          onStateChange={(state) => {
+            routeNameRef.current = screenTracking(state, routeNameRef);
+          }}
+        />
+      </Provider>
+    </>
+  );
+};
 const codePushOptions = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
   installMode: codePush.InstallMode.IMMEDIATE,
   updateDialog: true,
 };
-const App = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this screen and then
-                come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
-
 const MyApp = codePush(codePushOptions)(App);
 
 export default MyApp;

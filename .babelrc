@@ -23,12 +23,18 @@
     [
       "module-resolver",
       {
-        "cwd": "babelrc",
+        // "cwd": "babelrc",
         "root": [
           "./src"
         ],
         "alias": {
           "api": "./src/api",
+          "assets": "./src/assets",
+          "storeConfig": "./src/storeConfig",
+          "scenes": "./src/scenes",
+          "sagas": "./src/sagas",
+          "reducer": "./src/reducer",
+          "utils": "./src/utils",
           "test": "./test",
           "underscore": "lodash"
         },
