@@ -30,10 +30,14 @@
         "alias": {
           "api": "./src/api",
           "assets": "./src/assets",
-          "storeConfig": "./src/storeConfig",
-          "scenes": "./src/scenes",
-          "sagas": "./src/sagas",
+          "constant": "./src/constant",
+          "languages": "./src/languages",
+          "manager": "./src/manager",
           "reducer": "./src/reducer",
+          "sagas": "./src/sagas",
+          "scenes": "./src/scenes",
+          "services": "./src/services",
+          "storeConfig": "./src/storeConfig",
           "utils": "./src/utils",
           "test": "./test",
           "underscore": "lodash"

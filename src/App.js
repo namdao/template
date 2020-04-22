@@ -13,6 +13,7 @@ import storeConfig from 'storeConfig';
 import codePush from 'react-native-code-push';
 import { NavigationContainer } from '@react-navigation/native';
 import { getActiveRouteName, screenTracking } from 'utils/screenTracking';
+import AppKeeper from 'manager/AppKeeper';
 import Splash from 'scenes/Splash';
 
 const App = () => {
@@ -20,20 +21,23 @@ const App = () => {
   const navigationRef = useRef();
 
   React.useEffect(() => {
-    const state = navigationRef.current.getRootState();
+    const state = navigationRef?.current?.getRootState();
     routeNameRef.current = getActiveRouteName(state);
   }, []);
 
   return (
     <>
       <Provider store={storeConfig.rootStore}>
-        <PersistGate loading={<Splash />} persistor={storeConfig.persistor} />
-        <NavigationContainer
-          ref={navigationRef}
-          onStateChange={(state) => {
-            routeNameRef.current = screenTracking(state, routeNameRef);
-          }}
-        />
+        <PersistGate loading={<Splash />} persistor={storeConfig.persistor}>
+          <AppKeeper>
+            <NavigationContainer
+              ref={navigationRef}
+              onStateChange={(state) => {
+                routeNameRef.current = screenTracking(state, routeNameRef);
+              }}
+            />
+          </AppKeeper>
+        </PersistGate>
       </Provider>
     </>
   );
