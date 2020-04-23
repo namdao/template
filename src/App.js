@@ -6,15 +6,20 @@
  * @flow strict-local
  */
 
+// eslint-disable-next-line import/no-unresolved
+import { enableScreens } from 'react-native-screens';
 import React, { useRef } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import storeConfig from 'storeConfig';
 import codePush from 'react-native-code-push';
 import { NavigationContainer } from '@react-navigation/native';
 import { getActiveRouteName, screenTracking } from 'utils/screenTracking';
-import AppKeeper from 'manager/AppKeeper';
+import storeConfig from 'storeConfig';
+import AppKeeper from 'manager/appKeeper';
 import Splash from 'scenes/Splash';
+import RootNavigator from 'navigation/Navigator';
+
+enableScreens();
 
 const App = () => {
   const routeNameRef = useRef();
@@ -35,7 +40,9 @@ const App = () => {
               onStateChange={(state) => {
                 routeNameRef.current = screenTracking(state, routeNameRef);
               }}
-            />
+            >
+              <RootNavigator />
+            </NavigationContainer>
           </AppKeeper>
         </PersistGate>
       </Provider>

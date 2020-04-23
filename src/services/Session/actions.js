@@ -10,9 +10,14 @@ export const updateToken = (payload) => ({
   payload,
 });
 
-/**
- * Clear session
- */
 export const clearSession = () => ({
   type: types.CLEAR,
+});
+
+export const checkAutoLogin = () => ({
+  type: types.CHECK_AUTO_LOGIN,
+});
+
+export const logout = () => ({
+  type: types.LOG_OUT,
 });

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Constants from 'constant/appConstant';
-import SetupAxios from 'manager/AxiosManager';
+import SetupAxios from 'manager/axiosManager';
 // import { setLanguage } from 'languages';
 import styles from './styles';
 
