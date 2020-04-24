@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseText check render should can pass props color 1`] = `
+<Text
+  style={
+    Array [
+      Object {},
+      Object {
+        "color": "red",
+        "fontSize": 1,
+        "fontWeight": "500",
+        "lineHeight": undefined,
+        "textAlign": "auto",
+      },
+    ]
+  }
+>
+  Test
+</Text>
+`;
+
+exports[`BaseText check snapShot should match snapshot 1`] = `
+<Text
+  style={
+    Array [
+      Object {},
+      Object {
+        "color": null,
+        "fontSize": null,
+        "fontWeight": null,
+        "lineHeight": undefined,
+        "textAlign": "auto",
+      },
+    ]
+  }
+>
+  Test
+</Text>
+`;
