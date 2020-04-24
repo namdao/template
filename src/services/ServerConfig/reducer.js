@@ -26,8 +26,8 @@ export const serverConfigReducer = (state = initialState, { type, payload }) => 
 const persistConfig = {
   key: 'template:serverConfig',
   storage: AsyncStorage,
-  whitelist: [],
-  blacklist: ['baseUrl'],
+  whitelist: ['baseUrl'],
+  blacklist: [],
   timeout: null,
 };
 

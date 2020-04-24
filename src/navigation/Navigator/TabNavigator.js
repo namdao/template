@@ -2,14 +2,15 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DrawerNavigator from './DrawerNavigator';
 import SettingsStack from './SettingsNavigator';
+import { TabMenu } from './ConstantNavigator';
 
 const BottomTab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
     <BottomTab.Navigator>
-      <BottomTab.Screen name="Home" component={DrawerNavigator} />
-      <BottomTab.Screen name="Settings" component={SettingsStack} />
+      <BottomTab.Screen name={TabMenu.HOME} component={DrawerNavigator} />
+      <BottomTab.Screen name={TabMenu.SETTINGS} component={SettingsStack} />
     </BottomTab.Navigator>
   );
 };

@@ -1,15 +1,17 @@
 import React, { PureComponent } from 'react';
 import { Text, View, Button } from 'react-native';
-import { navigateScreen } from 'navigation/Actions';
+import { DETAILS } from 'navigation/Navigator/ConstantNavigator';
 
 export default class HomeScreen extends PureComponent {
   render() {
-    const { navigation } = this.props;
+    const { navigation, navigateScreen, resetNavigator, jumpToTab } = this.props;
     return (
       <View>
         <Text>Home screen</Text>
-        <Button title="Go to Details" onPress={() => navigation.dispatch(navigateScreen())} />
+        <Button title="Go to Details" onPress={() => navigateScreen(DETAILS)} />
         <Button title="Open menu" onPress={() => navigation.openDrawer()} />
+        <Button title="Reset " onPress={() => resetNavigator()} />
+        <Button title="Jump to settings " onPress={() => jumpToTab('settings')} />
       </View>
     );
   }

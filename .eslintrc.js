@@ -113,5 +113,6 @@ module.exports = {
     "react/prop-types": 1,
     "react/no-did-update-set-state": 0,
     "react/state-in-constructor": 0,
+    "react-hooks/rules-of-hooks": 0,
   },
 };

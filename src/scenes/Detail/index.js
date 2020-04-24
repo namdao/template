@@ -1,11 +1,25 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { goBack } from 'navigation/Actions/rootNavigation';
+import { updateServerBaseUrl } from 'services/ServerConfig/actions';
+import ServerConfigSelector from 'services/ServerConfig/selectors';
+import Detail from './Detail';
 
-const DetailScreen = () => {
-  return (
-    <View>
-      <Text>Detail screen</Text>
-    </View>
+const mapStateToProps = (state) => ({
+  baseUrl: ServerConfigSelector.getServerBaseUrl(state),
+});
+
+const mapDispatchToProps = (dispatch) => {
+  const binActionCreators = bindActionCreators(
+    {
+      updateServerBaseUrl,
+    },
+    dispatch
   );
+  return {
+    goBack,
+    ...binActionCreators,
+  };
 };
-export default DetailScreen;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

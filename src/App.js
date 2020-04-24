@@ -1,32 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 // eslint-disable-next-line import/no-unresolved
 import { enableScreens } from 'react-native-screens';
 import React, { useRef } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import codePush from 'react-native-code-push';
 import { NavigationContainer } from '@react-navigation/native';
 import { getActiveRouteName, screenTracking } from 'utils/screenTracking';
 import storeConfig from 'storeConfig';
 import AppKeeper from 'manager/appKeeper';
+import VersionManager from 'manager/checkVersionService';
+import AppStateManager from 'manager/appStateHandler';
 import Splash from 'scenes/Splash';
+import RootNavigation from 'navigation/Actions/rootNavigation';
 import RootNavigator from 'navigation/Navigator';
 
 enableScreens();
 
 const App = () => {
   const routeNameRef = useRef();
-  const navigationRef = useRef();
 
   React.useEffect(() => {
-    const state = navigationRef?.current?.getRootState();
+    const state = RootNavigation?.current?.getRootState();
     routeNameRef.current = getActiveRouteName(state);
   }, []);
 
@@ -36,11 +29,13 @@ const App = () => {
         <PersistGate loading={<Splash />} persistor={storeConfig.persistor}>
           <AppKeeper>
             <NavigationContainer
-              ref={navigationRef}
+              ref={RootNavigation}
               onStateChange={(state) => {
                 routeNameRef.current = screenTracking(state, routeNameRef);
               }}
             >
+              <AppStateManager />
+              <VersionManager />
               <RootNavigator />
             </NavigationContainer>
           </AppKeeper>
@@ -49,11 +44,11 @@ const App = () => {
     </>
   );
 };
-const codePushOptions = {
-  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
-  installMode: codePush.InstallMode.IMMEDIATE,
-  updateDialog: true,
-};
-const MyApp = codePush(codePushOptions)(App);
+// const codePushOptions = {
+//   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+//   installMode: codePush.InstallMode.IMMEDIATE,
+//   updateDialog: true,
+// };
+// const MyApp = codePush(codePushOptions)(App);
 
-export default MyApp;
+export default App;

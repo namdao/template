@@ -31,6 +31,7 @@
           "api": "./src/api",
           "assets": "./src/assets",
           "constant": "./src/constant",
+          "components": "./src/components",
           "languages": "./src/languages",
           "manager": "./src/manager",
           "reducer": "./src/reducer",
