@@ -93,6 +93,9 @@ class CheckVersionService extends Component {
       const update = await CodePush.checkForUpdate();
       if (!update) {
         Logger.log('------- CodePush have no Update -------');
+        this.setState({
+          updateMode: UPDATE_MODE.NONE,
+        });
         return;
       }
       Logger.log('------- CodePush have a Update -------');
@@ -202,10 +205,7 @@ class CheckVersionService extends Component {
   };
 
   renderBottomButton = () => {
-    const { updateMode, currentProgress, statusProcess, isUpdate } = this.state;
-    if (updateMode === UPDATE_MODE.NONE) {
-      return null;
-    }
+    const { currentProgress, statusProcess, isUpdate } = this.state;
     const roundedValue = (currentProgress * 100).toFixed(2);
     const progress = `${roundedValue}%`;
     if (isUpdate) {
@@ -247,8 +247,16 @@ class CheckVersionService extends Component {
 
   render() {
     const { updateMode, codePushDescription } = this.state;
+    if (updateMode === UPDATE_MODE.NONE) {
+      return null;
+    }
     return (
-      <AnimatableView ref={this.setAnimateView} style={styles.container} useNativeDriver>
+      <AnimatableView
+        pointerEvents="box-none"
+        ref={this.setAnimateView}
+        style={styles.container}
+        useNativeDriver
+      >
         <FastImage
           style={styles.image}
           resizeMode={FastImage.resizeMode.cover}

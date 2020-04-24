@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     borderRadius: resWidth(4),
     paddingHorizontal: resWidth(15),
     paddingTop: resHeight(40),
-    opacity: 0,
-    zIndex: 1000,
+    opacity: 1,
+    zIndex: 2,
     alignItems: 'center',
     transform: [
       {
