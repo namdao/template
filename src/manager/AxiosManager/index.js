@@ -3,6 +3,7 @@ import { doNothing } from 'utils/utility';
 import Constants from 'constant/appConstant';
 import * as ErrorConstants from 'constant/errorConstant';
 import Platform from 'utils/platform';
+import Logger from 'utils/logger';
 // import { l10n } from 'languages';
 
 const { ERROR_CODES } = ErrorConstants;
@@ -57,7 +58,7 @@ const clearBaseUrl = () => {
 
 const setHeaderToken = (newToken) => {
   if (!axios.defaults.headers || !newToken) {
-    console.warn('-------- axios headers empty');
+    Logger.warn('-------- axios headers empty');
     return;
   }
 
@@ -65,7 +66,7 @@ const setHeaderToken = (newToken) => {
   const currentToken = axios?.defaults?.headers?.Authorization || '';
 
   if (currentToken === bearerToken) {
-    console.warn('-------- axios headers token SAME');
+    Logger.warn('-------- axios headers token SAME');
     return;
   }
   axios.defaults.headers.Authorization = bearerToken;

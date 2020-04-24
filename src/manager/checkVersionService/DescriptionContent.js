@@ -9,12 +9,12 @@ const DescriptionContent = ({ updateMode, codePushDescription }) => {
   if (updateMode === UPDATE_MODE.STORE) {
     return (
       <View style={styles.descriptionWrapper}>
-        {/* <Text style={styles.timeToUpdateTitle}>{l10n.time_to_update}</Text> */}
+        <Text style={styles.timeToUpdateTitle}>Đã đến lúc cập nhật</Text>
         <Text style={styles.forceUpdateDescription}>Bắt buộc cập nhật</Text>
       </View>
     );
   }
-  if (updateMode === UPDATE_MODE.CODE_PUSH) {
+  if (updateMode !== UPDATE_MODE.CODE_PUSH) {
     return (
       <View style={styles.descriptionWrapper}>
         <Text style={styles.timeToUpdateTitle}>Đã đến lúc cập nhật</Text>

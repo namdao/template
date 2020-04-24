@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   contentWrapper: {
     flex: 1,
     justifyContent: 'space-around',
+    alignItems: 'center',
   },
   descriptionWrapper: {
     justifyContent: 'center',
@@ -50,14 +51,15 @@ const styles = StyleSheet.create({
     fontSize: resFont(17),
     color: Colors.black50,
     lineHeight: resHeight(30),
+    paddingVertical: resWidth(7),
     paddingHorizontal: resWidth(20),
-    paddingTop: resHeight(30),
   },
   updateNowButton: {
     alignSelf: 'center',
-    width: resWidth(77),
+    width: perWidth(85),
+  },
+  shardowCard: {
     ...ObjectStyles.cardShadow,
   },
 });
-
 export default styles;

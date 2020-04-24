@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
-import { View, Platform, Text, Linking } from 'react-native';
+import { View, Platform, Linking } from 'react-native';
 import { View as AnimatableView } from 'react-native-animatable';
-import CodePush from 'react-native-code-push';
-import FastImage from 'react-native-fast-image';
-// import { l10n } from 'languages';
 import PropTypes from 'prop-types';
+import CodePush from 'react-native-code-push';
+// import { l10n } from 'languages';
+/**
+ * List component
+ */
+import FastImage from 'react-native-fast-image';
 import * as Progress from 'react-native-progress';
 import CommonButton from 'components/CommonButton';
+import BaseText from 'components/BasedText';
 import Images from 'utils/images';
 /**
- * internal imports
+ * Style
  */
+import Colors from 'constant/colorConstant';
+import { resFont } from 'utils/screen';
+import Logger from 'utils/logger';
 import styles from './styles';
+/**
+ * Helper
+ */
 import { UPDATE_MODE } from './constants';
 import DescriptionContent from './DescriptionContent';
 
@@ -20,11 +30,11 @@ const initState = {
   updateMode: UPDATE_MODE.NONE,
   codePushDescription: '',
   currentProgress: 0,
-  statusProcess: '',
+  statusProcess: 'Đang cập nhật',
   isUpdate: false,
 };
 
-class VersionManager extends Component {
+class CheckVersionService extends Component {
   static propTypes = {
     appState: PropTypes.string,
   };
@@ -74,20 +84,19 @@ class VersionManager extends Component {
     //   this.showUpdate();
     //   return this.setState({ updateMode: checkResult });
     // }
-    return this.checkCodePush();
+    this.checkCodePush();
   };
 
   checkCodePush = async () => {
     try {
-      console.log('------- CodePush check for Update -------');
+      Logger.log('------- CodePush check for Update -------');
       const update = await CodePush.checkForUpdate();
       if (!update) {
-        console.log('------- CodePush have no Update -------');
+        Logger.log('------- CodePush have no Update -------');
         return;
       }
-      console.log('------- CodePush have a Update -------');
+      Logger.log('------- CodePush have a Update -------');
       const { isMandatory } = update;
-      this.showUpdate();
       if (isMandatory) {
         this.showUpdate();
         const { description } = update || '';
@@ -102,43 +111,43 @@ class VersionManager extends Component {
         });
       }
     } catch (error) {
-      console.warn('CodePush.checkForUpdateError', error);
+      Logger.warn('CodePush.checkForUpdateError', error);
     }
   };
 
   codePushStatusDidChange(syncStatus) {
-    console.log('------- CodePush codePushStatusDidChange -------');
+    Logger.log('------- CodePush codePushStatusDidChange -------');
     let { statusProcess } = this.state;
     switch (syncStatus) {
       case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
-        console.log('CHECKING_FOR_UPDATE');
+        Logger.log('CHECKING_FOR_UPDATE');
         statusProcess = 'Kiểm tra bản cập nhật';
         break;
       case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-        console.log('DOWNLOADING_PACKAGE');
+        Logger.log('DOWNLOADING_PACKAGE');
         statusProcess = 'Đang tải';
         break;
       case CodePush.SyncStatus.AWAITING_USER_ACTION:
-        console.log('AWAITING_USER_ACTION');
+        Logger.log('AWAITING_USER_ACTION');
         statusProcess = 'Chờ hành động';
         break;
       case CodePush.SyncStatus.INSTALLING_UPDATE:
-        console.log('INSTALLING_UPDATE');
+        Logger.log('INSTALLING_UPDATE');
         statusProcess = 'Đang cài đặt bản cập nhật';
         break;
       case CodePush.SyncStatus.UP_TO_DATE:
-        console.log('UP_TO_DATE');
+        Logger.log('UP_TO_DATE');
         statusProcess = 'Đã cập nhật bản mới nhất';
         break;
       case CodePush.SyncStatus.UPDATE_INSTALLED:
-        console.log('UPDATE_INSTALLED');
+        Logger.log('UPDATE_INSTALLED');
         statusProcess = 'Cập nhật hoàn tất';
         break;
       case CodePush.SyncStatus.SYNC_IN_PROGRESS:
-        console.log('SYNC_IN_PROGRESS');
+        Logger.log('SYNC_IN_PROGRESS');
         break;
       case CodePush.SyncStatus.UNKNOWN_ERROR:
-        console.log('UNKNOWN_ERROR');
+        Logger.log('UNKNOWN_ERROR');
         break;
       default:
         break;
@@ -147,7 +156,7 @@ class VersionManager extends Component {
   }
 
   codePushDownloadDidProgress(progress) {
-    console.log('------- CodePush codePushDownloadDidProgress -------');
+    Logger.log('------- CodePush codePushDownloadDidProgress -------');
     const { receivedBytes, totalBytes } = progress;
     const temp = receivedBytes / totalBytes;
     this.setState({ currentProgress: temp }, () => {
@@ -174,7 +183,7 @@ class VersionManager extends Component {
           this.codePushStatusDidChange.bind(this),
           this.codePushDownloadDidProgress.bind(this)
         ).catch((error) => {
-          console.warn('CodePush.syncError', error);
+          Logger.warn('CodePush.syncError', error);
         });
       });
     }
@@ -201,21 +210,32 @@ class VersionManager extends Component {
     const progress = `${roundedValue}%`;
     if (isUpdate) {
       return (
-        <>
+        <View style={styles.contentWrapper}>
           <Progress.Circle
+            thickness={6}
             progress={roundedValue}
             showsText
+            color={Colors.main}
+            borderColor={Colors.main2}
+            size={100}
             formatText={() => progress}
-            containerStyle={styles.updateNowButton}
           />
-          <Text>{statusProcess}</Text>
-        </>
+          <BaseText
+            size={resFont(16)}
+            color={Colors.main2}
+            weight="600"
+            style={styles.codePushUpdateDescription}
+          >
+            {statusProcess}
+          </BaseText>
+        </View>
       );
     }
     return (
       <CommonButton
         title="Cập nhật"
-        style={styles.updateNowButton}
+        style={styles.shardowCard}
+        linearStyle={styles.updateNowButton}
         onPress={this.onPressUpdateNow}
       />
     );
@@ -248,4 +268,4 @@ const codePushOptions = {
   updateDialog: undefined,
 };
 
-export default CodePush(codePushOptions)(VersionManager);
+export default CodePush(codePushOptions)(CheckVersionService);
