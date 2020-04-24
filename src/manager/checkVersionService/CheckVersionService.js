@@ -101,12 +101,14 @@ class CheckVersionService extends Component {
       Logger.log('------- CodePush have a Update -------');
       const { isMandatory } = update;
       if (isMandatory) {
-        this.showUpdate();
         const { description } = update || '';
-        this.setState({
-          codePushDescription: description,
-          updateMode: UPDATE_MODE.CODE_PUSH,
-        });
+        this.setState(
+          {
+            codePushDescription: description,
+            updateMode: UPDATE_MODE.CODE_PUSH,
+          },
+          this.showUpdate
+        );
       } else {
         CodePush.sync({
           installMode: CodePush.InstallMode.ON_NEXT_RESUME,
