@@ -59,11 +59,6 @@ const Screen = {
   height,
   isLargeView,
   isTabletMode,
-  perWidth,
-  perHeight,
-  resWidth,
-  resHeight,
-  resFont,
 };
 
 export default Screen;

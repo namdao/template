@@ -8,7 +8,7 @@ const AppStack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
-    <AppStack.Navigator initialRouteName={MAIN_NAVIGATOR} headerMode={ConfigNavigator.HEADER.NONE}>
+    <AppStack.Navigator initialRouteName={AUTH_NAVIGATOR} headerMode={ConfigNavigator.HEADER.NONE}>
       <AppStack.Screen name={AUTH_NAVIGATOR} component={AuthNavigator} />
       <AppStack.Screen name={MAIN_NAVIGATOR} component={TabNavigator} />
     </AppStack.Navigator>

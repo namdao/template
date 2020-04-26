@@ -34,11 +34,13 @@
     "react-native-reanimated": "1.8.0",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "2.5.0",
+    "react-native-localization": "2.1.6",
     "react-redux": "7.2.0",
     "redux": "4.0.5",
     "redux-persist": "6.0.0",
     "redux-saga": "1.1.3",
-    "semver": "7.3.2"
+    "semver": "7.3.2",
+    "lodash": "4.17.15"
   },
   "husky": {
     "hooks": {

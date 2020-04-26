@@ -1,27 +1,30 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
+import Screen, { resWidth } from 'utils/screen';
+import Colors from 'constant/colorConstant';
+import commonStyle from 'constant/commonStyles';
 
-export const getWidth = () => Dimensions.get('window').width;
-export const getHeight = () => Dimensions.get('window').height;
+const { width, height } = Screen;
 const styles = StyleSheet.create({
   halfViewTop: {
-    flex: 1,
-    justifyContent: 'center',
+    ...commonStyle.flex1,
+    ...commonStyle.justifyCenter,
   },
   animateSplash: {
-    width: getWidth() / 2,
-    height: getHeight() / 4,
+    width: width / 2,
+    height: height / 2,
   },
   imageLogo: {
-    top: -50,
-    height: getHeight() / 6,
-    justifyContent: 'center',
-    width: getWidth(),
+    top: resWidth(-50),
+    height: height / 6,
+    width,
+    ...commonStyle.justifyCenter,
   },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: getWidth(),
+    width,
+    backgroundColor: Colors.polo_blue,
+    ...commonStyle.justifyCenter,
+    ...commonStyle.alignCenter,
+    ...commonStyle.flex1,
   },
 });
 export default styles;

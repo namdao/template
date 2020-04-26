@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import LottieView from 'lottie-react-native';
-import loading from 'assets/animation/loading.json';
+import loading from 'assets/animation/splash-loading.json';
 import LOGO from 'assets/images/main-light-logo.png';
 import FastImage from 'react-native-fast-image';
 import styles from './styles';

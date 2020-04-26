@@ -2,7 +2,6 @@ import React from 'react';
 // import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import SetupAxios from 'manager/axiosManager';
-// import { l10n } from 'languages';
 
 class CommonService extends React.Component {
   constructor(props) {
