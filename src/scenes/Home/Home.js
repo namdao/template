@@ -11,7 +11,7 @@ export default class HomeScreen extends PureComponent {
         <Text>Home screen</Text>
         <Button title={l10n.go_detail} onPress={() => navigateScreen(DETAILS)} />
         <Button title={l10n.open_menu} onPress={() => navigation.openDrawer()} />
-        <Button title="Reset " onPress={() => resetNavigator()} />
+        <Button title="Reset " onPress={() => resetNavigator('SPLASH')} />
         <Button title="Jump to settings " onPress={() => jumpToTab('settings')} />
       </View>
     );

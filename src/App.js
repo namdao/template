@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { getActiveRouteName, screenTracking } from 'utils/screenTracking';
 import storeConfig from 'storeConfig';
 import AppKeeper from 'manager/appKeeper';
+import CommonService from 'manager/commonService';
 import VersionManager from 'manager/checkVersionService';
 import AppStateManager from 'manager/appStateHandler';
 import Splash from 'scenes/Splash';
@@ -34,9 +35,10 @@ const App = () => {
                 routeNameRef.current = screenTracking(state, routeNameRef);
               }}
             >
-              <AppStateManager />
-              <VersionManager />
               <RootNavigator />
+              <AppStateManager />
+              <CommonService />
+              <VersionManager />
             </NavigationContainer>
           </AppKeeper>
         </PersistGate>
@@ -44,11 +46,5 @@ const App = () => {
     </>
   );
 };
-// const codePushOptions = {
-//   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
-//   installMode: codePush.InstallMode.IMMEDIATE,
-//   updateDialog: true,
-// };
-// const MyApp = codePush(codePushOptions)(App);
 
 export default App;

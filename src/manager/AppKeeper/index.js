@@ -5,7 +5,7 @@ import { updateServerBaseUrl } from 'services/ServerConfig/actions';
 import ServerConfigSelector from 'services/ServerConfig/selectors';
 // import SessionSelector from 'services/session/selectors';
 // import I18nSelector from 'services/i18n/selectors';
-import AppGateKeeper from './AppKeeper';
+import AppKeeper from './AppKeeper';
 
 const mapStateToProps = (state) => ({
   baseUrl: ServerConfigSelector.getServerBaseUrl(state),
@@ -22,4 +22,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppGateKeeper);
+export default connect(mapStateToProps, mapDispatchToProps)(AppKeeper);

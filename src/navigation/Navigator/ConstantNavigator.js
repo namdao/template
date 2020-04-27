@@ -3,7 +3,7 @@
  */
 export const AUTH_NAVIGATOR = 'AUTH_NAVIGATOR';
 export const MAIN_NAVIGATOR = 'MAIN_NAVIGATOR';
-
+export const SPLASH = 'SPLASH';
 /**
  * Home stack
  */

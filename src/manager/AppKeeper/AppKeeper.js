@@ -10,13 +10,13 @@ import {
 import PropTypes from 'prop-types';
 import Constants from 'constant/appConstant';
 import SetupAxios from 'manager/axiosManager';
-// import { setLanguage } from 'languages';
+import { setLanguage } from 'languages';
 import styles from './styles';
 
 class AppKeeper extends React.Component {
   constructor(props) {
     super(props);
-    const { baseUrl, updateServerBaseUrl } = props;
+    const { baseUrl, updateServerBaseUrl, locale } = props;
     const showServerBoard = !baseUrl;
     this.state = {
       serverPath: baseUrl || '',
@@ -35,7 +35,7 @@ class AppKeeper extends React.Component {
       /** sync baseUrl in reducer with axios baseUrl */
       baseUrl !== newBaseUrl && updateServerBaseUrl(newBaseUrl);
     }
-    // setLanguage(locale);
+    setLanguage(locale);
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -110,14 +110,14 @@ class AppKeeper extends React.Component {
 AppKeeper.propTypes = {
   children: PropTypes.node,
   updateServerBaseUrl: PropTypes.func.isRequired,
-  // locale: PropTypes.string,
+  locale: PropTypes.string,
   baseUrl: PropTypes.string,
 };
 
 AppKeeper.defaultProps = {
   children: null,
   baseUrl: '',
-  // locale: 'vi',
+  locale: 'vi',
 };
 
 export default AppKeeper;

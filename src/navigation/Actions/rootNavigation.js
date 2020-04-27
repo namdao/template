@@ -8,10 +8,10 @@ export const navigateScreen = (screen, params = {}) =>
 
 export const goBack = () => navigationRef.current.canGoBack() && navigationRef.current.goBack();
 
-export const resetNavigator = () =>
+export const resetNavigator = (screen, params = {}) =>
   navigationRef.current.reset({
-    index: 1,
-    routes: [{ name: 'Details' }],
+    index: 0,
+    routes: [{ name: screen, params }],
   });
 
 export const backToTopScreen = () => navigationRef.current.dispatch(StackActions.popToTop());

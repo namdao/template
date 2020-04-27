@@ -50,6 +50,7 @@ module.exports = {
       },
     ],
     // "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/no-unresolved": [2, { caseSensitive: false }],
     "import/no-extraneous-dependencies": 2,
     "import/prefer-default-export": 0,
     "react/destructuring-assignment": 2,

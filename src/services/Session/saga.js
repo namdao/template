@@ -1,9 +1,16 @@
-import { takeLatest } from 'redux-saga/effects';
-import { doNothing } from 'utils/utility';
+import { takeLatest, select, delay } from 'redux-saga/effects';
+import * as Navigator from 'navigation/Navigator/ConstantNavigator';
+import { resetNavigator } from 'navigation/Actions/rootNavigation';
 import * as types from './types';
+import Selector from './selectors';
 
 function* checkAutoLogin() {
-  yield doNothing;
+  const state = yield select();
+  const token = Selector.getToken(state);
+  if (!token) {
+    yield delay(1000);
+    resetNavigator(Navigator.AUTH_NAVIGATOR);
+  }
 }
 
 function* watchSession() {
