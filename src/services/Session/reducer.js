@@ -5,6 +5,7 @@ import * as types from './types';
 const initialState = {
   userId: '',
   token: '',
+  isAuthenticate: false,
 };
 
 export const sessionReducer = (state = initialState, { type, payload }) => {
@@ -13,6 +14,8 @@ export const sessionReducer = (state = initialState, { type, payload }) => {
       return { ...state, userId: payload };
     case types.UPDATE_TOKEN:
       return { ...state, token: payload };
+    case types.UPDATE_AUTHENTICATED:
+      return { ...state, isAuthenticate: payload };
     case types.CLEAR:
       return {
         ...state,

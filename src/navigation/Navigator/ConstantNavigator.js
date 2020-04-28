@@ -1,14 +1,20 @@
 /**
- * Main stack
+ * Core stack
  */
+export const TAB_NAVIGATOR = 'TAB_NAVIGATOR';
 export const AUTH_NAVIGATOR = 'AUTH_NAVIGATOR';
-export const MAIN_NAVIGATOR = 'MAIN_NAVIGATOR';
+
+/**
+ * Auth stack
+ */
 export const SPLASH = 'SPLASH';
+export const LOGIN = 'LOGIN';
+
 /**
  * Home stack
  */
-export const HOME = 'Home';
-export const DETAILS = 'Details';
+export const HOME = 'HOME';
+export const DETAILS = 'DETAILS';
 
 /**
  * Navigator

@@ -1,18 +1,12 @@
 const getSession = (state) => state.services.session;
 const getUserId = (state) => state.services.session.userId;
 const getToken = (state) => state.services.session.token;
-const getStringeeToken = (state) => state.services.session.stringeeToken;
-const getFCMToken = (state) => state.services.session.fcmToken;
-const getOneSignalPushKey = (state) => state.services.session.oneSignalPushKey;
-const getLastTimeCheckVersion = (state) => state.services.session.lastTimeCheckVersion;
+const getAuthenticate = (state) => state.services.session.isAuthenticate;
 const SessionSelector = {
-  getFCMToken,
-  getOneSignalPushKey,
   getSession,
-  getStringeeToken,
+  getAuthenticate,
   getToken,
   getUserId,
-  getLastTimeCheckVersion,
 };
 
 export default SessionSelector;

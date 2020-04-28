@@ -1,19 +1,25 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import Splash from 'scenes/Splash';
-import TabNavigator from './TabNavigator';
-import AuthNavigator from './AuthNavigator';
-import { MAIN_NAVIGATOR, AUTH_NAVIGATOR, ConfigNavigator, SPLASH } from './ConstantNavigator';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { goBack } from 'navigation/Actions/rootNavigation';
+import { updateServerBaseUrl } from 'services/ServerConfig/actions';
+import SessionSelector from 'services/Session/selectors';
+import MainNavigator from './MainNavigator';
 
-const AppStack = createStackNavigator();
+const mapStateToProps = (state) => ({
+  isAuthenticate: SessionSelector.getAuthenticate(state),
+});
 
-const AppNavigator = () => {
-  return (
-    <AppStack.Navigator initialRouteName={SPLASH} headerMode={ConfigNavigator.HEADER.NONE}>
-      <AppStack.Screen name={SPLASH} component={Splash} />
-      <AppStack.Screen name={AUTH_NAVIGATOR} component={AuthNavigator} />
-      <AppStack.Screen name={MAIN_NAVIGATOR} component={TabNavigator} />
-    </AppStack.Navigator>
+const mapDispatchToProps = (dispatch) => {
+  const binActionCreators = bindActionCreators(
+    {
+      updateServerBaseUrl,
+    },
+    dispatch
   );
+  return {
+    goBack,
+    ...binActionCreators,
+  };
 };
-export default AppNavigator;
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainNavigator);

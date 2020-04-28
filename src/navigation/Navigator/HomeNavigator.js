@@ -13,7 +13,7 @@ const HomeNavigator = () => {
         name={HOME}
         component={HomeScreen}
         options={{
-          title: 'Profile',
+          title: 'Home Screen',
           headerStyleInterpolator: HeaderStyleInterpolators.forFade,
         }}
       />
@@ -21,7 +21,7 @@ const HomeNavigator = () => {
         name={DETAILS}
         component={DetailScreen}
         options={{
-          title: 'AAA',
+          title: 'Details screen',
           headerStyleInterpolator: HeaderStyleInterpolators.forFade,
         }}
       />

@@ -1,16 +1,22 @@
-import { takeLatest, select, delay } from 'redux-saga/effects';
-import * as Navigator from 'navigation/Navigator/ConstantNavigator';
-import { resetNavigator } from 'navigation/Actions/rootNavigation';
+import { takeLatest, select, put, delay } from 'redux-saga/effects';
+import { navigateScreen } from 'navigation/Actions/rootNavigation';
+import { AUTH_NAVIGATOR } from 'navigation/Navigator/ConstantNavigator';
 import * as types from './types';
+import * as actions from './actions';
 import Selector from './selectors';
 
 function* checkAutoLogin() {
   const state = yield select();
   const token = Selector.getToken(state);
   if (!token) {
-    yield delay(1000);
-    resetNavigator(Navigator.AUTH_NAVIGATOR);
+    yield put(actions.updateAuthenticate(false));
+    // delay 0.1s to NavigationRef is mounted.
+    yield delay(100);
+    navigateScreen(AUTH_NAVIGATOR);
+    return;
   }
+  yield put(actions.updateAuthenticate(true));
+  // update Role for another tab
 }
 
 function* watchSession() {

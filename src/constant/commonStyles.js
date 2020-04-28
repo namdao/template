@@ -16,8 +16,14 @@ export const ObjectStyles = {
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
   },
-  itemBorderBottom: { borderBottomWidth: Border.thin, borderBottomColor: Colors.polo_blue },
-  itemBorderTop: { borderTopWidth: Border.thin, borderTopColor: Colors.light_gray },
+  itemBorderBottom: {
+    borderBottomWidth: Border.thin,
+    borderBottomColor: Colors.polo_blue,
+  },
+  itemBorderTop: {
+    borderTopWidth: Border.thin,
+    borderTopColor: Colors.light_gray,
+  },
   itemTextShadow: {
     textShadowColor: Colors.BLACK_OPACITY40,
     textShadowRadius: 2,
@@ -74,6 +80,9 @@ export default StyleSheet.create({
   alignCenter: { alignItems: 'center' },
   alignEnd: { alignItems: 'flex-end' },
   alignStart: { alignItems: 'flex-start' },
+  alignSeftCenter: { alignSelf: 'center' },
+  alignSeftStart: { alignSelf: 'flex-start' },
+  alignSelfEnd: { alignSelf: 'flex-end' },
   justifyCenter: { justifyContent: 'center' },
   justifyStart: { justifyContent: 'flex-start' },
   justifyEnd: { justifyContent: 'flex-end' },
