@@ -25,6 +25,9 @@ export const ConfigNavigator = {
     FLOAT: 'float',
     SCREEN: 'screen',
   },
+  SWIPEBACK: {
+    FALSE: false,
+  },
 };
 
 /**

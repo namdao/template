@@ -4,7 +4,8 @@ import { Text, ViewPropTypes } from 'react-native';
 
 const BasedText = ({ children, style, color, size, weight, textAlign, lineHeight, ...rest }) => (
   <Text
-    style={[style, { color, fontSize: size, fontWeight: weight, textAlign, lineHeight }]}
+    allowFontScaling={false}
+    style={[{ color, fontSize: size, fontWeight: weight, textAlign, lineHeight }, style]}
     {...rest}
   >
     {children}

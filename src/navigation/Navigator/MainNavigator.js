@@ -18,7 +18,11 @@ export default class MainNavigator extends Component {
 
   renderAuthStack = () => {
     return (
-      <AppStack.Navigator initialRouteName={SPLASH} headerMode={ConfigNavigator.HEADER.NONE}>
+      <AppStack.Navigator
+        initialRouteName={SPLASH}
+        screenOptions={{ gestureEnabled: ConfigNavigator.SWIPEBACK.FALSE }}
+        headerMode={ConfigNavigator.HEADER.NONE}
+      >
         <AppStack.Screen name={SPLASH} component={Splash} />
         <AppStack.Screen name={AUTH_NAVIGATOR} component={AuthNavigator} />
       </AppStack.Navigator>
@@ -40,13 +44,3 @@ MainNavigator.propTypes = {
 MainNavigator.defaultProps = {
   isAuthenticate: false,
 };
-// const AppNavigator = () => {
-//   return (
-//     <AppStack.Navigator initialRouteName={SPLASH} headerMode={ConfigNavigator.HEADER.NONE}>
-//       <AppStack.Screen name={SPLASH} component={Splash} />
-//       <AppStack.Screen name={AUTH_NAVIGATOR} component={AuthNavigator} />
-//       <AppStack.Screen name={MAIN_NAVIGATOR} component={TabNavigator} />
-//     </AppStack.Navigator>
-//   );
-// };
-// export default AppNavigator;

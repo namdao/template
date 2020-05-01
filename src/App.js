@@ -2,6 +2,7 @@
 import { enableScreens } from 'react-native-screens';
 import React, { useRef } from 'react';
 import { Provider } from 'react-redux';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { getActiveRouteName, screenTracking } from 'utils/screenTracking';
@@ -29,17 +30,19 @@ const App = () => {
       <Provider store={storeConfig.rootStore}>
         <PersistGate loading={<Splash />} persistor={storeConfig.persistor}>
           <AppKeeper>
-            <NavigationContainer
-              ref={RootNavigation}
-              onStateChange={(state) => {
-                routeNameRef.current = screenTracking(state, routeNameRef);
-              }}
-            >
-              <RootNavigator />
-              <AppStateManager />
-              <CommonService />
-              <VersionManager />
-            </NavigationContainer>
+            <SafeAreaProvider>
+              <NavigationContainer
+                ref={RootNavigation}
+                onStateChange={(state) => {
+                  routeNameRef.current = screenTracking(state, routeNameRef);
+                }}
+              >
+                <RootNavigator />
+                <AppStateManager />
+                <CommonService />
+                <VersionManager />
+              </NavigationContainer>
+            </SafeAreaProvider>
           </AppKeeper>
         </PersistGate>
       </Provider>

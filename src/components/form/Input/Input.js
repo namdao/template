@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TextInput } from 'react-native';
-import Colors from 'constant/colorConstant';
 import { doNothing } from 'utils/utility';
+import Colors from 'constant/colorConstant';
 import styles from './styles';
 
 const Input = ({
@@ -20,7 +20,7 @@ const Input = ({
   onFocusCallback,
   onLayout,
 }) => (
-  <View>
+  <>
     <View onLayout={onLayout} style={[styles.container, containerStyle]}>
       {renderLeftComponent()}
       <TextInput
@@ -32,7 +32,7 @@ const Input = ({
         selectionColor={Colors.black}
         {...input}
         // TextInput only receive value type String
-        value={input?.value ? `${input?.value}` : ''}
+        value={input?.value ? `${input.value}` : ''}
         {...inputProps}
         onFocus={() => {
           input.onFocus();
@@ -45,7 +45,7 @@ const Input = ({
     {errorVisible && error && touched && (
       <Text style={[styles.errorText, errorTextStyle]}>{error}</Text>
     )}
-  </View>
+  </>
 );
 
 Input.propTypes = {

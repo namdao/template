@@ -10,7 +10,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingVertical: resHeight(10),
     paddingHorizontal: resWidth(15),
-    width: perWidth(100),
+    width: '100%',
   },
   input: {
     margin: 0,
