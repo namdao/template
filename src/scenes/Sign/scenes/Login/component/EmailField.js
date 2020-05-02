@@ -8,7 +8,7 @@ import Input from 'components/form/Input';
 import Colors from 'constant/colorConstant';
 import * as Animatable from 'react-native-animatable';
 
-import styles from './styles';
+import styles from '../styles';
 
 const { FORM_LOGIN } = reduxFormConstants;
 const { FIELDS } = FORM_LOGIN;
@@ -52,6 +52,8 @@ export default class EmailField extends React.Component {
           returnKeyType: 'next',
           keyboardType: 'email-address',
           autoCorrect: false,
+          autoCapitalize: 'none',
+          autoCompleteType: 'email',
         }}
         name={FIELDS.IDENTIFY}
         component={this.renderEmailInput}

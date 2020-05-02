@@ -16,6 +16,16 @@ export const ObjectStyles = {
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
   },
+  buttonShadow: {
+    shadowColor: Colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   itemBorderBottom: {
     borderBottomWidth: Border.thin,
     borderBottomColor: Colors.polo_blue,

@@ -6,7 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import Helper from 'scenes/Sign/helper/validate';
 import Colors from 'constant/colorConstant';
 import Input from 'components/form/Input';
-import styles from './styles';
+import styles from '../styles';
 
 const { FORM_LOGIN } = reduxFormConstants;
 const { FIELDS } = FORM_LOGIN;

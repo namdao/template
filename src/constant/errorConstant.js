@@ -1,4 +1,4 @@
-const ERROR_CODES = {
+export const ERROR_CODES = {
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
@@ -10,7 +10,7 @@ const ERROR_CODES = {
   BLACKLIST: 451,
 };
 
-const ERROR_MESSAGES = {
+export const ERROR_MESSAGES = {
   BAD_REQUEST: 'bad_request',
   UNAUTHORIZED: 'unauthorized',
   FORBIDDEN: 'forbidden',
@@ -25,5 +25,3 @@ const ERROR_MESSAGES = {
 };
 
 export const INVALID_DATE = 'Invalid Date';
-
-export default { ERROR_CODES, ERROR_MESSAGES };

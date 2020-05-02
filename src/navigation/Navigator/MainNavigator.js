@@ -8,6 +8,17 @@ import { TAB_NAVIGATOR, AUTH_NAVIGATOR, ConfigNavigator, SPLASH } from './Consta
 
 const AppStack = createStackNavigator();
 export default class MainNavigator extends Component {
+  static propTypes = {
+    role: PropTypes.shape({}),
+  };
+
+  static defaultProps = {
+    role: {
+      id: '',
+      name: '',
+    },
+  };
+
   renderMainStack = () => {
     return (
       <AppStack.Navigator headerMode={ConfigNavigator.HEADER.NONE}>
@@ -30,17 +41,10 @@ export default class MainNavigator extends Component {
   };
 
   render() {
-    const { isAuthenticate } = this.props;
-    if (!isAuthenticate) {
+    const { role } = this.props;
+    if (!role.id) {
       return this.renderAuthStack();
     }
     return this.renderMainStack();
   }
 }
-MainNavigator.propTypes = {
-  isAuthenticate: PropTypes.bool,
-};
-
-MainNavigator.defaultProps = {
-  isAuthenticate: false,
-};

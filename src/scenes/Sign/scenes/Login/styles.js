@@ -3,7 +3,7 @@ import Colors from 'constant/colorConstant';
 import Common from 'constant/commonStyles';
 import { resWidth } from 'utils/screen';
 
-const { flex1, alignStart, justifyEnd } = Common;
+const { flex1, alignStart, justifyEnd, alignSeftCenter } = Common;
 
 export default StyleSheet.create({
   container: {
@@ -18,6 +18,12 @@ export default StyleSheet.create({
     paddingHorizontal: resWidth(20),
     backgroundColor: Colors.primary,
   },
+  mainLogo: {
+    width: resWidth(100),
+    height: resWidth(100),
+    borderRadius: resWidth(20),
+    ...alignSeftCenter,
+  },
   space30: {
     paddingVertical: resWidth(30),
   },
@@ -25,7 +31,7 @@ export default StyleSheet.create({
     paddingVertical: resWidth(10),
   },
   halftBottom: {
-    flex: 3,
+    flex: 2,
     backgroundColor: Colors.white,
     paddingVertical: resWidth(30),
     borderTopLeftRadius: resWidth(40),

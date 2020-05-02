@@ -3,23 +3,16 @@ import { persistReducer } from 'redux-persist';
 import * as types from './types';
 
 const initialState = {
-  userId: '',
   token: '',
-  isAuthenticate: false,
 };
 
 export const sessionReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case types.UPDATE_USER_ID:
-      return { ...state, userId: payload };
     case types.UPDATE_TOKEN:
       return { ...state, token: payload };
-    case types.UPDATE_AUTHENTICATED:
-      return { ...state, isAuthenticate: payload };
     case types.CLEAR:
       return {
         ...state,
-        userId: '',
         token: '',
       };
     default:
@@ -30,7 +23,7 @@ export const sessionReducer = (state = initialState, { type, payload }) => {
 const persistConfig = {
   key: 'template:session',
   storage: AsyncStorage,
-  whitelist: ['userId', 'token'],
+  whitelist: ['token'],
   blacklist: [],
   timeout: null,
 };

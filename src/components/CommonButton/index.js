@@ -9,6 +9,7 @@ import styles from './styles';
 
 const CommonButton = ({
   colors,
+  isFlat,
   disabled,
   title,
   onPress,
@@ -21,22 +22,37 @@ const CommonButton = ({
   children,
 }) => {
   const toRenderItem = children || <Text style={[styles.buttonText, textStyle]}>{title}</Text>;
-  return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, style]} disabled={disabled}>
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        colors={disabled ? [Colors.gray, Colors.gray] : colors}
-        style={[styles.linearGradient, { borderRadius }, linearStyle]}
+  if (isLoading) {
+    return <ActivityIndicator style={styleActivator} color="white" size="small" />;
+  }
+
+  const gradientButton = () => {
+    return (
+      <TouchableOpacity onPress={onPress} style={[styles.button, style]} disabled={disabled}>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          colors={disabled ? [Colors.gray, Colors.gray] : colors}
+          style={[styles.linearGradient, { borderRadius }, linearStyle]}
+        >
+          {toRenderItem}
+        </LinearGradient>
+      </TouchableOpacity>
+    );
+  };
+
+  const flatButton = () => {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        style={[styles.flatButton, { borderRadius }, style]}
+        disabled={disabled}
       >
-        {isLoading ? (
-          <ActivityIndicator style={styleActivator} color="white" size="small" />
-        ) : (
-          toRenderItem
-        )}
-      </LinearGradient>
-    </TouchableOpacity>
-  );
+        {toRenderItem}
+      </TouchableOpacity>
+    );
+  };
+  return isFlat === '' ? gradientButton() : flatButton();
 };
 
 CommonButton.propTypes = {
@@ -51,6 +67,7 @@ CommonButton.propTypes = {
   borderRadius: PropTypes.number,
   colors: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node,
+  isFlat: PropTypes.bool,
 };
 
 CommonButton.defaultProps = {
@@ -62,9 +79,10 @@ CommonButton.defaultProps = {
   title: 'Title Default',
   onPress: doNothing,
   isLoading: false,
-  borderRadius: resWidth(10),
+  borderRadius: resWidth(5),
   colors: [Colors.main, Colors.main2],
   children: null,
+  isFlat: true,
 };
 
 export default CommonButton;

@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { goBack } from 'navigation/Actions/rootNavigation';
 import { updateServerBaseUrl } from 'services/ServerConfig/actions';
-import SessionSelector from 'services/Session/selectors';
+import SignSelector from 'scenes/Sign/redux/selectors';
 import MainNavigator from './MainNavigator';
 
 const mapStateToProps = (state) => ({
-  isAuthenticate: SessionSelector.getAuthenticate(state),
+  role: SignSelector.getRoleUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => {

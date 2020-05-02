@@ -11,4 +11,5 @@ export default {
   error_email: 'Email invalid',
   error_min_password: 'Password at least 6 character',
   require_field: 'Required field',
+  sign_in: 'Sign in',
 };

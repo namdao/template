@@ -10,11 +10,6 @@ export const updateToken = (payload) => ({
   payload,
 });
 
-export const updateAuthenticate = (payload) => ({
-  type: types.UPDATE_AUTHENTICATED,
-  payload,
-});
-
 export const clearSession = () => ({
   type: types.CLEAR,
 });

@@ -11,4 +11,5 @@ export default {
   error_email: 'Email không đúng',
   error_min_password: 'Mật khẩu ít nhất 6 kí tự',
   require_field: 'Thông tin bắt buộc',
+  sign_in: 'Đăng nhập',
 };

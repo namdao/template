@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-// import { reducer as navReducer } from 'navigation/reducers';
-// import { reducer as dataReducer } from 'data';
 import servicesReducer from 'services/servicesReducer';
+import dataReducer from './data';
 
 const rootReducer = combineReducers({
   form: formReducer,
-  // nav: navReducer,
   services: servicesReducer,
+  data: dataReducer,
 });
 
 const appReducer = (state, action) => {

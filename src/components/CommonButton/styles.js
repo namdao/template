@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Colors from 'constant/colorConstant';
 import { resHeight, resFont } from 'utils/screen';
+import { ObjectStyles } from 'constant/commonStyles';
 
 const styles = StyleSheet.create({
   button: {
@@ -9,6 +10,13 @@ const styles = StyleSheet.create({
   linearGradient: {
     justifyContent: 'center',
     height: resHeight(40),
+  },
+  flatButton: {
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.success,
+    ...ObjectStyles.buttonShadow,
   },
   buttonText: {
     fontSize: resFont(14),

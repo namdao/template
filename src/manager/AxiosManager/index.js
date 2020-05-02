@@ -4,7 +4,7 @@ import Constants from 'constant/appConstant';
 import * as ErrorConstants from 'constant/errorConstant';
 import Platform from 'utils/platform';
 import Logger from 'utils/logger';
-// import { l10n } from 'languages';
+import { l10n } from 'languages';
 
 const { ERROR_CODES } = ErrorConstants;
 
@@ -80,21 +80,21 @@ const clearHeaderToken = () => {
   };
 };
 
-const getUnhandledErrorMessage = (error) => {
-  if (Platform.isProduction) return 'l10n.unknown_error';
+const getUnhandledErrorMessage = (errors) => {
+  if (Platform.isProduction) return l10n.unknown_error;
   let message;
 
-  if (!error) {
+  if (!errors) {
     message = 'empty error message';
     return message;
   }
 
-  message = error.message || error.toString();
+  message = errors.message || errors.toString();
   return message;
 };
 
-const getErrorMessagesFromServer = (responseData, error) => {
-  const { messages, _error, errors } = responseData;
+const getErrorMessagesFromServer = (error) => {
+  const { messages, _error, errors } = error;
   if (typeof messages === 'string') {
     return messages;
   }
@@ -103,8 +103,12 @@ const getErrorMessagesFromServer = (responseData, error) => {
     return errors;
   }
 
+  if (typeof messages === 'object') {
+    const errMessage = Object.values(messages);
+    return errMessage.join('');
+  }
   if (Array.isArray(errors)) {
-    return errors.join(' ');
+    return messages.join(' ');
   }
 
   if (typeof _error?.message === 'string') {
@@ -119,65 +123,65 @@ const getErrorMessagesFromServer = (responseData, error) => {
 };
 
 const setupOnResponseInterceptors = (
-  onReceivedToken = doNothing,
+  // onReceivedToken = doNothing,
   onUnAuthorized = doNothing,
   onBlacklist = doNothing
 ) => {
   /**
-   * handle success response
-   */
-  const onResponseSuccess = (response) => {
-    const authorization = response?.headers?.authorization || '';
-    if (authorization) {
-      setHeaderToken(authorization, `onReceivedToken:${response?.config.url}`);
-      onReceivedToken(authorization);
-    }
-    return response.data;
-  };
-
-  /**
    * handle error response
    */
-  const onResponseError = (error) => {
-    let alertMessage = 'l10n.unknown_error';
+  const onResponseError = (errors) => {
+    let alertMessage = l10n.unknown_error;
 
-    if (!error.response) {
-      switch (error.message) {
+    const { code } = errors;
+    if (!code) {
+      switch (errors.messages) {
         case 'Network Error':
-          alertMessage = 'l10n.no_internet_connection';
+          alertMessage = l10n.no_internet_connection;
           break;
         default:
-          alertMessage = getUnhandledErrorMessage();
+          alertMessage = getUnhandledErrorMessage(errors);
           break;
       }
       throw new Error(alertMessage);
     }
 
-    const {
-      response: { status, data },
-    } = error;
-    const errorDataFromServer = data || {};
-
     /**
      * handle error by http error code
      */
-    switch (status) {
+    switch (code) {
       case ERROR_CODES.UNAUTHORIZED:
-        onUnAuthorized({ url: error?.config?.url });
+        onUnAuthorized({ url: errors?.config?.url });
         break;
       case ERROR_CODES.BLACKLIST:
         onBlacklist();
         break;
       default:
-        alertMessage = getErrorMessagesFromServer(errorDataFromServer, error);
+        alertMessage = getErrorMessagesFromServer(errors);
         break;
     }
 
     const finalError = new Error(alertMessage);
-    finalError.code = status;
-    finalError.response = error.response;
+    finalError.code = code;
+    // finalError.response = errors.response;
 
     throw finalError;
+  };
+
+  /**
+   * handle success response
+   */
+  const onResponseSuccess = (response) => {
+    // const authorization = response?.headers?.authorization || '';
+    // if (authorization) {
+    //   setHeaderToken(authorization, `onReceivedToken:${response?.config.url}`);
+    //   onReceivedToken(authorization);
+    // }
+    const { data, errors } = response.data;
+    if (errors) {
+      return onResponseError(errors);
+    }
+    return data;
   };
 
   // Check interceptor DEFAULT exist in list handlers
