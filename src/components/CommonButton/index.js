@@ -52,7 +52,7 @@ const CommonButton = ({
       </TouchableOpacity>
     );
   };
-  return isFlat === '' ? gradientButton() : flatButton();
+  return !isFlat ? gradientButton() : flatButton();
 };
 
 CommonButton.propTypes = {

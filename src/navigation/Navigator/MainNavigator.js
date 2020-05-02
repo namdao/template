@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Splash from 'scenes/Splash';
 import PropTypes from 'prop-types';
-import TabNavigator from './TabNavigator';
 import AuthNavigator from './AuthNavigator';
-import { TAB_NAVIGATOR, AUTH_NAVIGATOR, ConfigNavigator, SPLASH } from './ConstantNavigator';
+import DrawerNavigator from './DrawerNavigator';
+import { DrawerMenu, AUTH_NAVIGATOR, ConfigNavigator, SPLASH } from './ConstantNavigator';
 
 const AppStack = createStackNavigator();
 export default class MainNavigator extends Component {
@@ -22,7 +22,7 @@ export default class MainNavigator extends Component {
   renderMainStack = () => {
     return (
       <AppStack.Navigator headerMode={ConfigNavigator.HEADER.NONE}>
-        <AppStack.Screen name={TAB_NAVIGATOR} component={TabNavigator} />
+        <AppStack.Screen name={DrawerMenu.DASHBOARD} component={DrawerNavigator} />
       </AppStack.Navigator>
     );
   };

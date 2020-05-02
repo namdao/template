@@ -235,6 +235,7 @@ class CheckVersionService extends Component {
     }
     return (
       <CommonButton
+        isFlat={false}
         title="Cập nhật"
         style={styles.shardowCard}
         linearStyle={styles.updateNowButton}

@@ -1,5 +1,8 @@
 import React from 'react';
 import { createStackNavigator, HeaderStyleInterpolators } from '@react-navigation/stack';
+/**
+ * Screen
+ */
 import HomeScreen from 'scenes/Home';
 import DetailScreen from 'scenes/Detail';
 import { HOME, DETAILS } from './ConstantNavigator';
