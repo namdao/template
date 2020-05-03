@@ -1,46 +1,62 @@
 /**
  * Core stack
  */
-export const TAB_NAVIGATOR = 'TAB_NAVIGATOR';
-export const AUTH_NAVIGATOR = 'AUTH_NAVIGATOR';
+export const STACK = {
+  TAB_NAVIGATOR: 'TAB_NAVIGATOR',
+  AUTH_NAVIGATOR: 'AUTH_NAVIGATOR',
+  /**
+   * Auth stack
+   */
+  SPLASH: 'SPLASH',
+  LOGIN: 'LOGIN',
+  /**
+   * Home stack
+   */
+  HOME: 'HOME',
+  DETAILS: 'DETAILS',
+  /**
+   * Drawer
+   */
+  DRAWER_MENU: {
+    DASHBOARD: 'DRAWER_DASHBOARD',
+  },
+  /**
+   * Tab name
+   */
+  TAB_MENU: {
+    HOME: 'TAB_HOME',
+    SETTINGS: 'TAB_SETTINGS',
+  },
+};
 
 /**
- * Auth stack
+ * Config Navigator
  */
-export const SPLASH = 'SPLASH';
-export const LOGIN = 'LOGIN';
-
-/**
- * Home stack
- */
-export const HOME = 'HOME';
-export const DETAILS = 'DETAILS';
-
-/**
- * Navigator
- */
-export const ConfigNavigator = {
+export const CONFIG = {
   HEADER: {
     NONE: 'none',
     FLOAT: 'float',
     SCREEN: 'screen',
   },
+  HEADERTITLE: {
+    NONE: '',
+  },
+  HEADERALIGN: {
+    LEFT: {
+      headerTitleAlign: 'left',
+    },
+    CENTER: {
+      headerTitleAlign: 'center',
+    },
+  },
   SWIPEBACK: {
     FALSE: false,
   },
-};
-
-/**
- * Drawer name
- */
-export const DrawerMenu = {
-  DASHBOARD: 'Dashboard',
-};
-
-/**
- * Tab name
- */
-export const TabMenu = {
-  HOME: 'home',
-  SETTINGS: 'settings',
+  FADESCREEN: {
+    cardStyleInterpolator: ({ current }) => ({
+      cardStyle: {
+        opacity: current.progress,
+      },
+    }),
+  },
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StackActions, TabActions } from '@react-navigation/native';
+import { StackActions, TabActions, DrawerActions } from '@react-navigation/native';
 
 const navigationRef = React.createRef();
 
@@ -21,4 +21,7 @@ export const backToOthersScreen = (key) => navigationRef.current.dispatch(StackA
 export const jumpToTab = (screen, params = {}) =>
   navigationRef.current.dispatch(TabActions.jumpTo(screen, params));
 
+export const openDrawer = () => {
+  navigationRef.current.dispatch(DrawerActions.toggleDrawer());
+};
 export default navigationRef;

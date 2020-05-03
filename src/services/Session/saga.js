@@ -1,6 +1,6 @@
 import { takeLatest, select, put, delay } from 'redux-saga/effects';
 import { navigateScreen } from 'navigation/Actions/rootNavigation';
-import { AUTH_NAVIGATOR } from 'navigation/Navigator/ConstantNavigator';
+import { STACK } from 'navigation/Navigator/ConstantNavigator';
 import * as signActions from 'scenes/Sign/redux/actions';
 import * as types from './types';
 import * as api from './api';
@@ -11,7 +11,7 @@ function* checkAutoLogin() {
   const token = Selector.getToken(state);
   if (!token) {
     yield delay(100);
-    navigateScreen(AUTH_NAVIGATOR);
+    navigateScreen(STACK.AUTH_NAVIGATOR);
     return;
   }
   const response = yield api.getMe(token);

@@ -28,6 +28,8 @@ export default {
   main_background: '#f1f2f6',
   main: '#FF6300',
   main2: '#F09819',
+  mainBlue: '#56d1d5',
+  mainBlue2: '#56b9d5',
   malachite: 'rgb(8, 208, 98)',
   metalChi: 'rgb(155, 155, 155)', // #9b9b9b
   money: '#ffd32a',
@@ -49,6 +51,7 @@ export default {
   gray_light: '#bfc9c9',
   send_message: '#FFC312',
   shadowedSteel: 'rgb(74, 74, 74)', // #4a4a4a
+  salmon: '#fe8a65',
   shipment_in_transit: '#3399ff',
   shipment_new: '#ff6300',
   silver: '#c8c7cc',

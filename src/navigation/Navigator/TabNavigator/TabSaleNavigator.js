@@ -1,15 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeNavigator from '../HomeNavigator';
-import SettingsStack from '../SettingsNavigator';
-import { TabMenu } from '../ConstantNavigator';
+import SettingsNavigator from '../SettingsNavigator';
+import { STACK } from '../ConstantNavigator';
 
 const BottomTab = createBottomTabNavigator();
 const TabSaleNavigator = () => {
   return (
     <BottomTab.Navigator>
-      <BottomTab.Screen name={TabMenu.HOME} component={HomeNavigator} />
-      <BottomTab.Screen name={TabMenu.SETTINGS} component={SettingsStack} />
+      <BottomTab.Screen name={STACK.TAB_MENU.HOME} component={HomeNavigator} />
+      <BottomTab.Screen name={STACK.TAB_MENU.SETTINGS} component={SettingsNavigator} />
     </BottomTab.Navigator>
   );
 };

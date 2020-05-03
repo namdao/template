@@ -4,7 +4,7 @@ import Splash from 'scenes/Splash';
 import PropTypes from 'prop-types';
 import AuthNavigator from './AuthNavigator';
 import DrawerNavigator from './DrawerNavigator';
-import { DrawerMenu, AUTH_NAVIGATOR, ConfigNavigator, SPLASH } from './ConstantNavigator';
+import { CONFIG, STACK } from './ConstantNavigator';
 
 const AppStack = createStackNavigator();
 export default class MainNavigator extends Component {
@@ -21,8 +21,8 @@ export default class MainNavigator extends Component {
 
   renderMainStack = () => {
     return (
-      <AppStack.Navigator headerMode={ConfigNavigator.HEADER.NONE}>
-        <AppStack.Screen name={DrawerMenu.DASHBOARD} component={DrawerNavigator} />
+      <AppStack.Navigator headerMode={CONFIG.HEADER.NONE}>
+        <AppStack.Screen name={STACK.DRAWER_MENU.DASHBOARD} component={DrawerNavigator} />
       </AppStack.Navigator>
     );
   };
@@ -30,12 +30,12 @@ export default class MainNavigator extends Component {
   renderAuthStack = () => {
     return (
       <AppStack.Navigator
-        initialRouteName={SPLASH}
-        screenOptions={{ gestureEnabled: ConfigNavigator.SWIPEBACK.FALSE }}
-        headerMode={ConfigNavigator.HEADER.NONE}
+        initialRouteName={STACK.SPLASH}
+        screenOptions={{ gestureEnabled: CONFIG.SWIPEBACK.FALSE }}
+        headerMode={CONFIG.HEADER.NONE}
       >
-        <AppStack.Screen name={SPLASH} component={Splash} />
-        <AppStack.Screen name={AUTH_NAVIGATOR} component={AuthNavigator} />
+        <AppStack.Screen name={STACK.SPLASH} component={Splash} />
+        <AppStack.Screen name={STACK.AUTH_NAVIGATOR} component={AuthNavigator} />
       </AppStack.Navigator>
     );
   };

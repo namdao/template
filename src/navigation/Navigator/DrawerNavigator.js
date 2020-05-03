@@ -7,7 +7,7 @@ import {
 import Animated from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from 'constant/colorConstant';
-import { TAB_NAVIGATOR } from './ConstantNavigator';
+import { STACK } from './ConstantNavigator';
 import TabNavigator from './TabNavigator';
 import styles from './styles';
 
@@ -51,7 +51,7 @@ const DrawerNavigator = () => {
           return <DrawerContent {...props} />;
         }}
       >
-        <DrawerStack.Screen name={TAB_NAVIGATOR}>
+        <DrawerStack.Screen name={STACK.TAB_NAVIGATOR}>
           {(props) => <TabNavigator {...props} style={animatedStyle} />}
         </DrawerStack.Screen>
       </DrawerStack.Navigator>

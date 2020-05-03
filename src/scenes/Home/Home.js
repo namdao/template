@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Text, View, Button } from 'react-native';
 import { l10n } from 'languages';
-import { DETAILS } from 'navigation/Navigator/ConstantNavigator';
+import { STACK } from 'navigation/Navigator/ConstantNavigator';
 
 export default class HomeScreen extends PureComponent {
   render() {
@@ -9,7 +9,7 @@ export default class HomeScreen extends PureComponent {
     return (
       <View>
         <Text>Home screen</Text>
-        <Button title={l10n.go_detail} onPress={() => navigateScreen(DETAILS)} />
+        <Button title={l10n.go_detail} onPress={() => navigateScreen(STACK.DETAILS)} />
         <Button title={l10n.open_menu} onPress={() => navigation.openDrawer()} />
         <Button title="Reset " onPress={() => resetNavigator('SPLASH')} />
         <Button title="Jump to settings " onPress={() => jumpToTab('settings')} />
