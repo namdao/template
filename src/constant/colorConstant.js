@@ -67,6 +67,7 @@ export default {
   veryLightPink: 'rgb(216,216,216)',
   warning: '#ffae42',
   white: 'white',
+  white50: 'rgba(255,255,255,0.5)',
   whiteApple: 'rgb(250, 250, 250)', // nigga ?
   whitePorcelain: 'rgb(250, 250, 250)',
   whiteSmoke: '#eeeeee',

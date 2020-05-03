@@ -10,6 +10,7 @@ import Colors from 'constant/colorConstant';
 import PropTypes from 'prop-types';
 import BackButton from 'components/BackButton/BackButton';
 import IconButton from 'components/IconButton';
+import SearchBar from 'components/SearchBar';
 import { STACK, CONFIG } from './ConstantNavigator';
 import styles from './styles';
 
@@ -36,6 +37,7 @@ const HomeNavigator = ({ navigation }) => {
         options={{
           ...CONFIG.HEADERALIGN.LEFT,
           headerLeft: () => <IconButton name="bars" onPress={toggleDrawer} />,
+          headerRight: () => <SearchBar />,
         }}
       />
       <HomeStack.Screen name={STACK.DETAILS} component={DetailScreen} />

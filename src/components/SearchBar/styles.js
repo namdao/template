@@ -3,10 +3,12 @@ import Colors from 'constant/colorConstant';
 import { resWidth } from 'utils/screen';
 
 const styles = StyleSheet.create({
-  iconDefault: {
-    color: Colors.white,
-    paddingHorizontal: resWidth(10),
-    paddingVertical: resWidth(5),
+  showSearch: {
+    backgroundColor: Colors.white50,
+  },
+  inputSearch: {
+    flex: 1,
+    paddingLeft: resWidth(5),
   },
 });
 export default styles;

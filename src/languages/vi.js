@@ -12,4 +12,5 @@ export default {
   error_min_password: 'Mật khẩu ít nhất 6 kí tự',
   require_field: 'Thông tin bắt buộc',
   sign_in: 'Đăng nhập',
+  search_placeholder: 'Tìm họ tên hoặc đt',
 };
