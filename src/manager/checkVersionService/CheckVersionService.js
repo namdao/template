@@ -15,7 +15,7 @@ import Images from 'utils/images';
 /**
  * Style
  */
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import { resFont } from 'utils/screen';
 import Logger from 'utils/logger';
 import styles from './styles';

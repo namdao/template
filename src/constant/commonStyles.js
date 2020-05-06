@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { resHeight } from 'utils/screen';
-import Colors from './colorConstant';
+import Colors from './colors';
 
 export const Border = {
   thin: StyleSheet.hairlineWidth,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TextInput } from 'react-native';
 import { doNothing } from 'utils/utility';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import styles from './styles';
 
 const Input = ({

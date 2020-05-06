@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import { resWidth, perWidth } from 'utils/screen';
 import Common from 'constant/commonStyles';
 
@@ -26,6 +26,9 @@ export default StyleSheet.create({
   },
   flex1: {
     ...flex1,
+  },
+  menuBar: {
+    color: Colors.lightSalmon,
   },
   // drawerItem: {
   //   ...alignStart,

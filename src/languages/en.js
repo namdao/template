@@ -13,4 +13,5 @@ export default {
   require_field: 'Required field',
   sign_in: 'Sign in',
   search_placeholder: 'Search name or phone',
+  title_order_draft: 'Follow orders',
 };

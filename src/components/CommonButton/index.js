@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
 import { doNothing } from 'utils/utility';
 import { resWidth } from 'utils/screen';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import styles from './styles';
 
 const CommonButton = ({

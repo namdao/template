@@ -45,6 +45,7 @@ export default class KeyboardAwareComponent extends React.Component {
         Animated.timing(this.keyboardHeight, {
           duration: event.duration,
           toValue: event.endCoordinates.height,
+          useNativeDriver: false,
         }),
       ]).start();
     });
@@ -59,6 +60,7 @@ export default class KeyboardAwareComponent extends React.Component {
       Animated.timing(this.keyboardHeight, {
         duration: event.duration,
         toValue: 0,
+        useNativeDriver: false,
       }),
     ]).start(() => this.setState({ isKeyboardVisible: false }));
   };

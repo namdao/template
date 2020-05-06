@@ -4,7 +4,7 @@ import { l10n } from 'languages';
 import reduxFormConstants from 'scenes/Sign/constants/reduxFormConstants';
 import Feather from 'react-native-vector-icons/Feather';
 import Helper from 'scenes/Sign/helper/validate';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import Input from 'components/form/Input';
 import styles from '../styles';
 

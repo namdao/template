@@ -10,9 +10,9 @@ export const STACK = {
   SPLASH: 'SPLASH',
   LOGIN: 'LOGIN',
   /**
-   * Home stack
+   * Order stack
    */
-  HOME: 'HOME',
+  ORDERLISTDRAFT: 'ORDERLISTDRAFT',
   DETAILS: 'DETAILS',
   /**
    * Drawer
@@ -24,7 +24,7 @@ export const STACK = {
    * Tab name
    */
   TAB_MENU: {
-    HOME: 'TAB_HOME',
+    ORDER_DRAFT: 'ORDER_DRAFT',
     SETTINGS: 'TAB_SETTINGS',
   },
 };

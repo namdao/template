@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/drawer';
 import Animated from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import { STACK } from './ConstantNavigator';
 import TabNavigator from './TabNavigator';
 import styles from './styles';

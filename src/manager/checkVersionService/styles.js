@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import { resFont, resWidth, resHeight, perWidth, perHeight } from 'utils/screen';
 import { ObjectStyles } from 'constant/commonStyles';
 

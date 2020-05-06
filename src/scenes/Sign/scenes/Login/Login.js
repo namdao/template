@@ -6,7 +6,7 @@ import Container from 'components/Container';
 import { resFont } from 'utils/screen';
 import BasedText from 'components/BasedText';
 import { l10n } from 'languages';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import KeyboardAware from 'components/KeyboardAware';
 import FastImage from 'react-native-fast-image';
 import Images from 'utils/images';

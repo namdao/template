@@ -11,8 +11,10 @@ function* requestLogin() {
     const state = yield select();
     const dataForm = selectors.getDataFormLogin(state);
     const response = yield api.login(dataForm);
-    yield put(actionsSession.updateToken(response?.token));
-    yield put(actions.loginSuccess(response?.user));
+    if (response) {
+      yield put(actionsSession.updateToken(response?.token));
+      yield put(actions.loginSuccess(response?.user));
+    }
   } catch (error) {
     Logger.error(error);
   }

@@ -5,7 +5,7 @@ import reduxFormConstants from 'scenes/Sign/constants/reduxFormConstants';
 import Feather from 'react-native-vector-icons/Feather';
 import Helper from 'scenes/Sign/helper/validate';
 import Input from 'components/form/Input';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import * as Animatable from 'react-native-animatable';
 
 import styles from '../styles';

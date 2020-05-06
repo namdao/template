@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import Screen, { resWidth } from 'utils/screen';
-import Colors from 'constant/colorConstant';
+import Colors from 'constant/colors';
 import commonStyle from 'constant/commonStyles';
 
 const { width, height } = Screen;

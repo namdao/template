@@ -83,7 +83,7 @@ class SearchBar extends PureComponent {
         <IconButton
           name={searchBarFocused ? 'close' : 'search1'}
           onPress={searchBarFocused ? this.onBlur : this.onFocus}
-          iconStyles={iconStyle}
+          iconStyles={[styles.iconSearch, iconStyle]}
         />
       </Animated.View>
     );
@@ -109,7 +109,7 @@ SearchBar.defaultProps = {
   inputStyle: {},
   containerStyle: {},
   onChangeText: doNothing,
-  searchFullWidth: perWidth(50),
+  searchFullWidth: perWidth(100),
   searchShortWidth: resWidth(42),
 };
 

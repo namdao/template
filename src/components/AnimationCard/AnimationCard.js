@@ -3,7 +3,7 @@ import { TouchableOpacity, Animated, ViewPropTypes } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import * as PropTypes from 'prop-types';
 import { doNothing } from 'utils/utility';
-import colorConstant from 'constant/colorConstant';
+import colorConstant from 'constant/colors';
 import styles from './styles';
 
 class AnimationCard extends PureComponent {

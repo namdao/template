@@ -13,4 +13,8 @@ export default {
   require_field: 'Thông tin bắt buộc',
   sign_in: 'Đăng nhập',
   search_placeholder: 'Tìm họ tên hoặc đt',
+  /**
+   * Order Draft Scence
+   */
+  title_order_draft: 'Theo dõi đơn hàng',
 };

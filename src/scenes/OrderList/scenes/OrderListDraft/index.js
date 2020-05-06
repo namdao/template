@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { navigateScreen, resetNavigator, jumpToTab } from 'navigation/Actions/rootNavigation';
-import { updateServerBaseUrl } from 'services/ServerConfig/actions';
-import ServerConfigSelector from 'services/ServerConfig/selectors';
+import { getListOrderDraft } from 'scenes/OrderList/redux/actions';
+import OrderListSelectors from 'scenes/OrderList/redux/selectors';
 
-import Home from './Home';
+import OrderListDraft from './OrderListDraft';
 
 const mapStateToProps = (state) => ({
-  baseUrl: ServerConfigSelector.getServerBaseUrl(state),
+  listDraft: OrderListSelectors.getListOrderDraft(state),
 });
 
 const mapDispatchToProps = (dispatch) => {
   const binActionCreators = bindActionCreators(
     {
-      updateServerBaseUrl,
+      getListOrderDraft,
     },
     dispatch
   );
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderListDraft);
