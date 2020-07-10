@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Splash from 'scenes/Splash';
 import PropTypes from 'prop-types';
@@ -7,16 +7,13 @@ import DrawerNavigator from './DrawerNavigator';
 import { CONFIG, STACK } from './ConstantNavigator';
 
 const AppStack = createStackNavigator();
-export default class MainNavigator extends Component {
+export default class MainNavigator extends PureComponent {
   static propTypes = {
-    role: PropTypes.shape({}),
+    token: PropTypes.string,
   };
 
   static defaultProps = {
-    role: {
-      id: '',
-      name: '',
-    },
+    token: '',
   };
 
   renderMainStack = () => {
@@ -31,7 +28,7 @@ export default class MainNavigator extends Component {
     return (
       <AppStack.Navigator
         initialRouteName={STACK.SPLASH}
-        screenOptions={{ gestureEnabled: CONFIG.SWIPEBACK.FALSE }}
+        screenOptions={{ gestureEnabled: CONFIG.SWIPE_BACK.FALSE }}
         headerMode={CONFIG.HEADER.NONE}
       >
         <AppStack.Screen name={STACK.SPLASH} component={Splash} />
@@ -41,8 +38,8 @@ export default class MainNavigator extends Component {
   };
 
   render() {
-    const { role } = this.props;
-    if (!role.id) {
+    const { token } = this.props;
+    if (!token || token === '') {
       return this.renderAuthStack();
     }
     return this.renderMainStack();

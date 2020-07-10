@@ -21,3 +21,11 @@ export const checkAutoLogin = () => ({
 export const logout = () => ({
   type: types.LOG_OUT,
 });
+export const setDeviceToken = (payload) => ({
+  type: types.SET_DEVICE_TOKEN,
+  payload,
+});
+
+export const resetAllApp = () => ({
+  type: 'RESET_ALL_STATE',
+});

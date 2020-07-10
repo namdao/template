@@ -24,4 +24,21 @@ export const jumpToTab = (screen, params = {}) =>
 export const openDrawer = () => {
   navigationRef.current.dispatch(DrawerActions.toggleDrawer());
 };
+
+export const hideBottomTab = (navigation) => {
+  const parent = navigation.dangerouslyGetParent();
+  parent &&
+    parent.setOptions &&
+    parent.setOptions({
+      tabBarVisible: false,
+    });
+};
+export const showBottomTab = (navigation) => {
+  const parent = navigation.dangerouslyGetParent();
+  parent &&
+    parent.setOptions &&
+    parent.setOptions({
+      tabBarVisible: true,
+    });
+};
 export default navigationRef;

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Animated, TextInput, Keyboard, ViewPropTypes } from 'react-native';
+import { Animated, TextInput, Keyboard, ViewPropTypes, Text } from 'react-native';
 import Proptypes from 'prop-types';
 import IconButton from 'components/IconButton';
 import { resWidth, perWidth } from 'utils/screen';
@@ -17,6 +17,7 @@ class SearchBar extends PureComponent {
     this.inputLength = new Animated.Value(searchShortWidth);
     this.state = {
       searchBarFocused: false,
+      text: '',
     };
   }
 
@@ -46,16 +47,18 @@ class SearchBar extends PureComponent {
         }),
       ]).start();
     });
+    this.onChange('');
   };
 
   onChange = (value) => {
     const { onChangeText } = this.props;
-    onChangeText && onChangeText(value);
+    this.setState({ text: value });
+    onChangeText(value);
   };
 
   render() {
     const { iconStyle, placeholder, inputStyle, containerStyle } = this.props;
-    const { searchBarFocused } = this.state;
+    const { searchBarFocused, text } = this.state;
     const animateStyle = {
       width: this.inputLength,
     };
@@ -73,15 +76,18 @@ class SearchBar extends PureComponent {
         ]}
       >
         <TextInput
+          autoCorrect={false}
           ref={this.setInputRef}
           style={[styles.inputSearch, inputStyle]}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
-          onChange={this.onChange}
+          onChangeText={this.onChange}
           placeholder={inputPlaceHolder}
+          autoCompleteType="off"
+          defaultValue={text}
         />
         <IconButton
-          name={searchBarFocused ? 'close' : 'search1'}
+          name={searchBarFocused ? 'md-close' : 'ios-search'}
           onPress={searchBarFocused ? this.onBlur : this.onFocus}
           iconStyles={[styles.iconSearch, iconStyle]}
         />
@@ -94,7 +100,7 @@ class SearchBar extends PureComponent {
   };
 }
 SearchBar.propTypes = {
-  iconStyle: ViewPropTypes.style,
+  iconStyle: Proptypes.oneOfType(ViewPropTypes.style, Text.propTypes.style),
   inputStyle: ViewPropTypes.style,
   containerStyle: ViewPropTypes.style,
   placeholder: Proptypes.string,

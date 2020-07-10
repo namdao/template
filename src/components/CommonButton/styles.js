@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     height: resHeight(40),
   },
   flatButton: {
-    height: 45,
+    height: resHeight(45),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.success,

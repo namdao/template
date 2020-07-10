@@ -24,7 +24,7 @@ BasedText.propTypes = {
   weight: PropTypes.string,
   textAlign: PropTypes.string,
   lineHeight: PropTypes.number,
-  style: ViewPropTypes.style,
+  style: PropTypes.oneOf(ViewPropTypes.style, PropTypes.any),
 };
 
 BasedText.defaultProps = {

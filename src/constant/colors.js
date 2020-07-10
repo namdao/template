@@ -10,24 +10,15 @@ export default {
   blueNights: 'rgb(54, 58, 69)',
   brightOrange: 'rgb(255, 97, 6)',
   burntBrown: 'rgb(235, 87, 87)',
-  call: 'rgb(39, 174, 96)',
-  completed: 'rgb(10, 189, 227)',
-  danger: 'rgb(231, 76, 60)',
-  darkSkyBlue: 'rgb(74, 144, 226)',
   dustyGray: 'rgb(151, 151, 151)',
   eucalyptus: 'rgb(54, 171, 75)',
   frenchBlue: 'rgb(69, 85, 178)',
   gainsboro: 'rgb(220, 220, 220)',
-  gray: 'rgb(149, 165, 166)',
   greyishBrown: 'rgb(74, 74, 74)',
-  info: 'rgb(0, 204, 255)',
-  invisible: 'rgba(0, 0, 0, 0)',
   light_gray: '#E4E3E4',
   lightGrey: '#d4d4d4',
   lightSalmon: 'rgb(255, 185, 140)',
   main_background: '#f1f2f6',
-  main: '#FF6300',
-  main2: '#F09819',
   mainBlue: '#56d1d5',
   mainBlue2: '#56b9d5',
   malachite: 'rgb(8, 208, 98)',
@@ -41,8 +32,6 @@ export default {
   orangePink: 'rgb(255, 112, 88)',
   overlay_background: 'rgba(0, 0, 0, 0.8)',
   polo_blue: '#46586b',
-  posted: '#F79F1F',
-  primary: '#127cd4',
   pumpkin: '#ff8310',
   red: 'red',
   riverStyx: 'rgb(19, 23, 32)',
@@ -50,22 +39,13 @@ export default {
   savannahSun: 'rgb(255, 185, 140)',
   gray_light: '#bfc9c9',
   send_message: '#FFC312',
-  shadowedSteel: 'rgb(74, 74, 74)', // #4a4a4a
   salmon: '#fe8a65',
-  shipment_in_transit: '#3399ff',
-  shipment_new: '#ff6300',
   silver: '#c8c7cc',
   silverGrey: '#c4c4c4',
   silverPolish: 'rgb(199, 199, 199)',
   skyCaptain: 'rgb(36, 39, 51)',
-  success: '#2ecc71',
-  tealishGreen: 'rgb(0, 224, 101)', // #00e065
-  tomato: 'rgb(229, 56, 56)',
   transparent: 'transparent',
-  trolleyGrey: 'rgb(130, 130, 130)', // #8282828
   tuna: '#363a45',
-  veryLightPink: 'rgb(216,216,216)',
-  warning: '#ffae42',
   white: 'white',
   white50: 'rgba(255,255,255,0.5)',
   whiteApple: 'rgb(250, 250, 250)', // nigga ?
@@ -73,7 +53,6 @@ export default {
   whiteSmoke: '#eeeeee',
   wildDove: 'rgb(139, 139, 139)',
   youngNight: 'rgb(34, 35, 36)', // #222324
-  dustyOrange: 'rgb(249,135,35)',
   burtuqaliOrange: 'rgb(255, 104, 3)',
   charcoalGrey: 'rgb(58, 64, 82)',
   black20: 'rgba(0, 0, 0, 0.2)',
@@ -86,7 +65,6 @@ export default {
   charcoalGreyTwo: 'rgb(38,41, 47)',
   madForMango: 'rgb(245,164, 0)',
   arcticDawn: 'rgb(227, 230, 233)',
-  paleBlue: 'rgb(223,243, 253)',
   exclusiveElixir: 'rgb(251,241,221)',
   mintFlash: 'rgb(221, 246, 231)',
   black15: 'rgba(0, 0, 0, 0.15)',
@@ -95,7 +73,117 @@ export default {
   roseMadder: 'rgb(229,56,56)',
   safetyOrange: 'rgb(253,99,0)',
   easedPink: 'rgb(251,228,227)',
+  boldPink: '#ffd3d3',
   punch: 'rgb(219,68,55)',
   porpoise: 'rgb(218,218,218)',
   bavarianCream: 'rgb(255,249,221)',
+  /**
+   * Gradient Colors Order Draft
+   */
+  normalFollow: ['#53d2d6', '#56c1d5', '#56b9d5'],
+  warningFollow: ['#d53f62', '#d53f50', '#d53f3f'],
+  overFollow: ['#413e3e', '#302a2a', '#1a1413'],
+  main: '#FB6A25',
+  main1: '#FF6300',
+  main2: '#F09819',
+  main3: '#ff8310',
+  main4: '#ff8515',
+  gray: '#95a5a6',
+  call: '#27ae60',
+  new: '#fad30a',
+  lightGrey2: '#9C9B9B',
+  disabled: '#909090',
+  darkBlur: '#e3e3e3',
+  error: '#ff9494',
+  mainGreen: '#36AB4B',
+  softGreen: 'rgb(89,202,110)',
+  lightGreen: '#9DE0A7',
+  pink: 'pink',
+  closeBox: '#FFAB62',
+  dust: '#f0ad4e',
+  /**
+   * Bootstrap color
+   */
+  info: '#00ccff',
+  primary: '#127cd4',
+  danger: '#e74c3c',
+  success: '#2ecc71',
+  warning: '#ffae42',
+  /**
+   * Order status
+   */
+  posted: '#3399ff',
+  expired: '#828282',
+  cancelled: '#ed2d1c',
+  completed: '#2ac940',
+  has_bidding: '#fa9917',
+  bidding_quoted: '#fa9917',
+  bidding_accepted: '#ff6300',
+  shipment_new: '#ff6300',
+  shipment_in_transit: '#3399ff',
+
+  /**
+   * Bidding status
+   */
+  bidding_status_pending: '#fa9917',
+  bidding_status_accepted: '#2ac940',
+  bidding_status_rejected: '#ed2d1c',
+  bidding_status_cancelled: '#828282',
+  bidding_status_quoted: '#fa9917',
+  bidding_status_quoting: '#fa9917',
+  /**
+   * Zeplin color
+   */
+  tomato: '#db4437',
+  tealishGreen: '#00e065',
+  shadowedSteel: '#4a4a4a',
+  trolleyGrey: ' #8282828',
+  darkSkyBlue: '#4a90e2',
+  veryLightPink: '#f1f1f1',
+  invisible: 'rgba(0, 0, 0, 0)',
+  BLACK_OPACITY40: 'rgba(0,0,0,0.4)',
+  polylite_color: 'rgba(54,171,75,0.4)',
+  blueLine: 'rgba(33,150,243,0.75)',
+  blueWater: 'rgba(141,230,230,0.7)',
+  /**
+   * Rating
+   */
+  dustyOrange: '#fe7228',
+  extraLightGray: '#F7F7F8',
+  /*
+   * PROMOTION
+   */
+  coral: '#eb5757',
+  /**
+   * Referral
+   */
+  paleGrey: '#f4f5f6',
+  shadowCard: 'rgba(52, 52, 52, 0.1)',
+  flatButtonBorder: '#ff6400',
+  flatButtonSelected: '#fffbf8',
+  lightgray: 'lightgray',
+  veryLightBlue: 'rgb(232,235, 238)',
+  /**
+   * Bidding item
+   */
+  slate: 'rgb(70,88,107)',
+  slate15: 'rgba(71,90,111, 0.15)',
+  periwinkleBlue25: 'rgba(154,172, 246, 0.25)',
+  brownGrey: 'rgb(151,151,151)',
+  brownGrey2: '#8b8b8b',
+  jadeGreen: '#25ae5e',
+  superLightGrey: '#EBEBEB',
+  veryLightGreen: 'rgba(29,192,94,0.15)',
+  pale: 'rgb(251,241,221)',
+  paleBlue: 'rgb(227,230,233)',
+  veryLightPink2: '#fbe4e3',
+  veryLightPink3: 'rgb(226,226,226)',
+  ice: 'rgb(223,245,244)',
+  ice2: '#ddf6e7',
+  offWhite: 'rgb(253,245,229)',
+  orangeYellow: 'rgb(245,164,0)',
+  clearBlue: '#2986ff',
+  iceBlue: '#e1f4fd',
+  orangeBright: '#fcde9c',
+  orangeLightHolder: '#f9dccd',
 };

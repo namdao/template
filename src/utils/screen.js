@@ -51,7 +51,17 @@ const headerTrueHeight = resHeight(40);
 // const headerHeight = statusBarMarginH + headerTrueHeight;
 // const safeTopPadding = safeArea.top + statusBarMarginH;
 // const homeIndicatorHeight = Platform.hasNotch ? 34 : 0;
-
+const isIphoneX = () =>
+  Platform.isIos && (height === 812 || width === 812 || height === 896 || width === 896);
+const getBottomDevice = () => {
+  return isIphoneX() ? 34 : 0;
+};
+// params snapPoints for bottom modal
+export const SNAPPOINT_MODAL = {
+  FULL: [0, height - headerTrueHeight],
+  HAFT: [0, perHeight(50)],
+  THIRD: [0, perHeight(35)],
+};
 const Screen = {
   headerTrueHeight,
   statusBarHeight,
@@ -59,6 +69,8 @@ const Screen = {
   height,
   isLargeView,
   isTabletMode,
+  isIphoneX,
+  getBottomDevice,
 };
 
 export default Screen;

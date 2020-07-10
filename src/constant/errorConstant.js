@@ -23,5 +23,9 @@ export const ERROR_MESSAGES = {
   DEFAULT: 'unknown_error',
   BLACKLIST: 'blacklist',
 };
-
+export const ERROR_TYPE_CRASH = {
+  ERROR_DATA: 'ERROR_DATA',
+  API_SUCCESS_BUT_ERROR: 'API_SUCCESS_BUT_ERROR',
+  ERROR_API: 'ERROR_API',
+};
 export const INVALID_DATE = 'Invalid Date';

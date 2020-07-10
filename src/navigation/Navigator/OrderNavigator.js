@@ -1,17 +1,22 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import PropTypes from 'prop-types';
 /**
  * Screen
  */
 import OrderListDraft from 'scenes/OrderList/scenes/OrderListDraft';
-import DetailScreen from 'scenes/Detail';
+/**
+ * Component
+ */
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from 'constant/colors';
-import PropTypes from 'prop-types';
 import BackButton from 'components/BackButton/BackButton';
 import IconButton from 'components/IconButton';
-import SearchBar from 'components/SearchBar';
+/**
+ * utils
+ */
 import { l10n } from 'languages';
+import { showBottomTab } from 'navigation/Actions/rootNavigation';
 import { STACK, CONFIG } from './ConstantNavigator';
 import styles from './styles';
 
@@ -32,28 +37,31 @@ const OrderNavigator = ({ navigation }) => {
 
   return (
     <OrderStack.Navigator
-      initialRouteName={STACK.ORDERLISTDRAFT}
+      initialRouteName={STACK.ORDER_LIST_DRAFT}
       screenOptions={{ ...OptionHeaderNavigator }}
     >
       <OrderStack.Screen
-        name={STACK.ORDERLISTDRAFT}
+        name={STACK.ORDER_LIST_DRAFT}
         component={OrderListDraft}
         options={{
-          ...CONFIG.HEADERALIGN.LEFT,
+          ...CONFIG.HEADER_ALIGN.LEFT,
           title: l10n.title_order_draft,
           headerLeft: () => (
-            <IconButton iconStyles={styles.menuBar} name="bars" onPress={toggleDrawer} />
+            <IconButton iconStyles={styles.menuBar} name="md-menu" onPress={toggleDrawer} />
           ),
-          headerRight: () => <SearchBar />,
         }}
+        listeners={({ navigation: navBottom }) => ({
+          focus: () => {
+            showBottomTab(navBottom);
+          },
+        })}
       />
-      <OrderStack.Screen name={STACK.DETAILS} component={DetailScreen} />
     </OrderStack.Navigator>
   );
 };
 
 OrderNavigator.propTypes = {
-  navigation: PropTypes.objectOf({}),
+  navigation: PropTypes.objectOf(PropTypes.any),
 };
 OrderNavigator.defaultProps = {
   navigation: {},

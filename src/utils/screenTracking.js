@@ -1,3 +1,5 @@
+import Logger from './logger';
+
 // import TrackingManager from 'utils/trackingManager';
 // import BugSnagManager from 'utils/bugsnagManager';
 
@@ -23,6 +25,7 @@ export const screenTracking = (navigationState, routeNameRef) => {
   const previousRouteName = routeNameRef.current;
   const currentRouteName = getActiveRouteName(navigationState);
   if (previousRouteName !== currentRouteName) {
+    Logger.log(`###########SCREEN_NAME######### ${currentRouteName}`);
     // do something tracking when current screen;
   }
   return currentRouteName;

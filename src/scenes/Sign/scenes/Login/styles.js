@@ -24,12 +24,6 @@ export default StyleSheet.create({
     borderRadius: resWidth(20),
     ...alignSeftCenter,
   },
-  space30: {
-    paddingVertical: resWidth(30),
-  },
-  space10: {
-    paddingVertical: resWidth(10),
-  },
   halftBottom: {
     flex: 2,
     backgroundColor: Colors.white,
@@ -39,14 +33,15 @@ export default StyleSheet.create({
     paddingHorizontal: resWidth(20),
   },
   inputContainer: {
-    paddingVertical: resWidth(5),
+    backgroundColor: Colors.transparent,
+    paddingVertical: resWidth(8),
     paddingHorizontal: 0,
     borderBottomWidth: 1,
     borderBottomColor: Colors.silverGrey,
   },
   inputField: {
     flex: 1,
-    marginHorizontal: resWidth(5),
+    marginHorizontal: resWidth(8),
   },
   lineBreak: {
     borderBottomColor: Colors.silverGrey,

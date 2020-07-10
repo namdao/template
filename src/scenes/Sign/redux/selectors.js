@@ -1,8 +1,9 @@
-const getDataFormLogin = (state) => state.form.LOGIN.values;
-const getRoleUser = (state) => (state.data.user.roles.length > 0 ? state.data.user.roles[0] : {});
-
+const getRoleUser = (state) => {
+  return state.data.user.roles.length > 0 ? state.data.user.roles[0] : {};
+};
+const getUser = (state) => state.data.user;
 const SignSelectors = {
-  getDataFormLogin,
   getRoleUser,
+  getUser,
 };
 export default SignSelectors;

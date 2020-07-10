@@ -1,21 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Animated from 'react-native-reanimated';
-import { ROLE } from 'constant/appConstant';
 import TabSale from './TabSaleNavigator';
-import TabDesign from './TabDesignNavigator';
 import styles from '../styles';
 
-const TabNavigator = ({ style, role }) => {
+const TabNavigator = ({ style }) => {
   const checkTabByRole = () => {
-    switch (role?.name) {
-      case ROLE.ADMIN || ROLE.SALE:
-        return <TabSale />;
-      case ROLE.DESIGNER:
-        return <TabDesign />;
-      default:
-        return <TabSale />;
-    }
+    return <TabSale />;
   };
   return <Animated.View style={[styles.stack, style]}>{checkTabByRole()}</Animated.View>;
 };
@@ -28,4 +19,4 @@ TabNavigator.defaultProps = {
   role: {},
   style: {},
 };
-export default TabNavigator;
+export default memo(TabNavigator);

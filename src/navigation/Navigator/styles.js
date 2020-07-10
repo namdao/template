@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   drawerStyles: {
     ...flex1,
-    width: perWidth(50),
+    width: perWidth(70),
     backgroundColor: Colors.transparent,
   },
   bgTransparent: {
@@ -29,19 +29,6 @@ export default StyleSheet.create({
   },
   menuBar: {
     color: Colors.lightSalmon,
+    paddingHorizontal: resWidth(15),
   },
-  // drawerItem: {
-  //   ...alignStart,
-  //   marginVertical: 0,
-  // },
-  // drawerLabel: {
-  //   color: Colors.white,
-  //   marginLeft: resWidth(-16),
-  // },
-  // avatar: {
-  //   borderRadius: 60,
-  //   marginBottom: 16,
-  //   borderColor: 'white',
-  //   borderWidth: StyleSheet.hairlineWidth,
-  // },
 });

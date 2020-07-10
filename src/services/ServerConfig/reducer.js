@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { persistReducer } from 'redux-persist';
+import Platform from 'utils/platform';
 import * as types from './types';
 
 const initialState = {
@@ -8,6 +9,12 @@ const initialState = {
 
 export const serverConfigReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case 'RESET_ALL_STATE': {
+      if (Platform.isProduction) {
+        return state;
+      }
+      return initialState;
+    }
     case types.UPDATE_SERVER_BASE_URL:
       return {
         ...state,
@@ -24,7 +31,7 @@ export const serverConfigReducer = (state = initialState, { type, payload }) => 
 };
 
 const persistConfig = {
-  key: 'template:serverConfig',
+  key: 'toantam:serverConfig',
   storage: AsyncStorage,
   whitelist: ['baseUrl'],
   blacklist: [],

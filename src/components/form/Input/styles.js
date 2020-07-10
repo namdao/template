@@ -4,13 +4,12 @@ import { resWidth, resHeight, resFont, perWidth } from 'utils/screen';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: Colors.paleGrey2,
+    backgroundColor: Colors.paleGrey,
     borderRadius: resWidth(2),
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: resHeight(10),
     paddingHorizontal: resWidth(15),
-    width: '100%',
   },
   input: {
     margin: 0,

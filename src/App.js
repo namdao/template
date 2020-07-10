@@ -7,16 +7,21 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { getActiveRouteName, screenTracking } from 'utils/screenTracking';
 import storeConfig from 'storeConfig';
+import GlobalModal from 'services/GlobalModal';
 import AppKeeper from 'manager/appKeeper';
 import CommonService from 'manager/commonService';
+import Crashlytics from 'services/Crashlytics';
 import VersionManager from 'manager/checkVersionService';
 import AppStateManager from 'manager/appStateHandler';
 import Splash from 'scenes/Splash';
 import RootNavigation from 'navigation/Actions/rootNavigation';
 import RootNavigator from 'navigation/Navigator';
+import NotificationService from 'manager/notificationService';
+import DropDownMessage from 'components/DropDownMessage';
 
 enableScreens();
-
+Crashlytics.getInstance();
+// console.disableYellowBox = true;
 const App = () => {
   const routeNameRef = useRef();
 
@@ -39,8 +44,11 @@ const App = () => {
               >
                 <RootNavigator />
                 <AppStateManager />
+                <GlobalModal />
                 <CommonService />
-                <VersionManager />
+                <NotificationService />
+                <DropDownMessage />
+                {!__DEV__ && <VersionManager />}
               </NavigationContainer>
             </SafeAreaProvider>
           </AppKeeper>

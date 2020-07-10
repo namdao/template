@@ -11,18 +11,14 @@ import PropTypes from 'prop-types';
 import Constants from 'constant/appConstant';
 import SetupAxios from 'manager/axiosManager';
 import { setLanguage } from 'languages';
+import Platform from 'utils/platform';
 import styles from './styles';
 
 class AppKeeper extends React.Component {
   constructor(props) {
     super(props);
     const { baseUrl, updateServerBaseUrl, locale } = props;
-    const showServerBoard = !baseUrl;
-    this.state = {
-      serverPath: baseUrl || '',
-      showServerBoard,
-    };
-
+    let showServerBoard = !baseUrl;
     /**
      * initial axios
      */
@@ -30,18 +26,36 @@ class AppKeeper extends React.Component {
     /**
      * if have initial base url. Set its
      */
-    if (!showServerBoard) {
-      const newBaseUrl = SetupAxios.setBaseUrl(baseUrl);
-      /** sync baseUrl in reducer with axios baseUrl */
-      baseUrl !== newBaseUrl && updateServerBaseUrl(newBaseUrl);
-    }
+    const newBaseUrl = SetupAxios.setBaseUrl(baseUrl);
+    /** sync baseUrl in reducer with axios baseUrl */
+    baseUrl !== newBaseUrl && updateServerBaseUrl(newBaseUrl);
     setLanguage(locale);
+    if (Platform.isProduction) {
+      showServerBoard = false;
+    }
+    this.state = {
+      serverPath: baseUrl,
+      showServerBoard,
+    };
   }
 
-  // eslint-disable-next-line no-unused-vars
-  shouldComponentUpdate(_nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) {
     if (nextState !== this.state) return true;
+    const { baseUrl: nextBaseUrl } = nextProps;
+    const { baseUrl } = this.props;
+    if (baseUrl !== nextBaseUrl) return true;
     return false;
+  }
+
+  componentDidUpdate(prevProps) {
+    const { baseUrl: prevBaseUrl } = prevProps;
+    const { baseUrl } = this.props;
+    if (baseUrl !== prevBaseUrl) {
+      const { showServerBoard } = this.state;
+      if (!showServerBoard && baseUrl == null) {
+        this.setState({ showServerBoard: true, serverPath: '' });
+      }
+    }
   }
 
   onPressConfirmButton = () => {

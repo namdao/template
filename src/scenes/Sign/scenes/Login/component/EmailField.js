@@ -1,52 +1,47 @@
 import React from 'react';
-import { Field } from 'redux-form';
+import PropTypes from 'prop-types';
 import { l10n } from 'languages';
-import reduxFormConstants from 'scenes/Sign/constants/reduxFormConstants';
+import FormConstants from 'scenes/Sign/constants/formConstants';
 import Feather from 'react-native-vector-icons/Feather';
-import Helper from 'scenes/Sign/helper/validate';
 import Input from 'components/form/Input';
 import Colors from 'constant/colors';
 import * as Animatable from 'react-native-animatable';
 
 import styles from '../styles';
 
-const { FORM_LOGIN } = reduxFormConstants;
+const { FORM_LOGIN } = FormConstants;
 const { FIELDS } = FORM_LOGIN;
-export default class EmailField extends React.Component {
+class EmailField extends React.PureComponent {
   iconLeft = () => {
     return <Feather name="user" color={Colors.tealishGreen} size={20} />;
   };
 
-  iconRight = ({ meta: { error, touched } }) => {
-    if (!touched) return null;
+  iconRight = () => {
+    const { errors, touched } = this.props;
+    if (!touched[FIELDS.IDENTITY]) return null;
     return (
       <Animatable.View animation="bounceIn">
         <Feather
           name="check-circle"
-          color={touched && error ? Colors.greyishBrown : Colors.tealishGreen}
+          color={
+            touched[FIELDS.IDENTITY] && errors[FIELDS.IDENTITY]
+              ? Colors.greyishBrown
+              : Colors.tealishGreen
+          }
           size={20}
         />
       </Animatable.View>
     );
   };
 
-  renderEmailInput = (fieldProps) => {
+  render() {
     return (
       <Input
         containerStyle={[styles.inputContainer]}
         inputStyle={styles.inputField}
-        renderRightComponent={() => this.iconRight(fieldProps)}
+        renderRightComponent={this.iconRight}
         renderLeftComponent={this.iconLeft}
-        errorTextStyle={styles.errorText}
-        {...fieldProps}
-      />
-    );
-  };
-
-  render() {
-    return (
-      <Field
-        errorVisible
+        name={FIELDS.IDENTITY}
         inputProps={{
           placeholder: l10n.email_placeholder,
           returnKeyType: 'next',
@@ -55,10 +50,17 @@ export default class EmailField extends React.Component {
           autoCapitalize: 'none',
           autoCompleteType: 'email',
         }}
-        name={FIELDS.IDENTIFY}
-        component={this.renderEmailInput}
-        validate={[Helper.requiredField, Helper.validEmailUser]}
+        {...this.props}
       />
     );
   }
 }
+EmailField.propTypes = {
+  errors: PropTypes.shape({}),
+  touched: PropTypes.shape({}),
+};
+EmailField.defaultProps = {
+  errors: {},
+  touched: {},
+};
+export default EmailField;

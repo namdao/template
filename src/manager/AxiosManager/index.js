@@ -6,7 +6,7 @@ import Platform from 'utils/platform';
 import Logger from 'utils/logger';
 import { l10n } from 'languages';
 
-const { ERROR_CODES } = ErrorConstants;
+const { ERROR_CODES, ERROR_TYPE_CRASH } = ErrorConstants;
 
 const TIMEOUT = 1 * 60 * 1000;
 axios.defaults.timeout = TIMEOUT;
@@ -45,7 +45,7 @@ const setBaseUrl = (baseUrl) => {
   if (baseUrl) {
     newBaseUrl = baseUrl;
   } else if (Platform.isProduction) {
-    newBaseUrl = Constants.URL_PROD;
+    newBaseUrl = Constants.URL_PRODUCTION;
   }
   axios.defaults.baseURL = newBaseUrl;
 
@@ -122,19 +122,17 @@ const getErrorMessagesFromServer = (error) => {
   return getUnhandledErrorMessage(error);
 };
 
-const setupOnResponseInterceptors = (
-  // onReceivedToken = doNothing,
-  onUnAuthorized = doNothing,
-  onBlacklist = doNothing
-) => {
+const setupOnResponseInterceptors = (onUnAuthorized = doNothing, onBlacklist = doNothing) => {
   /**
    * handle error response
    */
   const onResponseError = (errors) => {
     let alertMessage = l10n.unknown_error;
+    const errorsData = errors;
+    errorsData.messages = JSON.stringify(errors?.response);
+    const { response } = errors || {};
 
-    const { code } = errors;
-    if (!code) {
+    if (response && !response?.status) {
       switch (errors.messages) {
         case 'Network Error':
           alertMessage = l10n.no_internet_connection;
@@ -149,10 +147,11 @@ const setupOnResponseInterceptors = (
     /**
      * handle error by http error code
      */
+    const code = errors?.code;
     switch (code) {
+      case ERROR_CODES.BAD_REQUEST:
       case ERROR_CODES.UNAUTHORIZED:
-        onUnAuthorized({ url: errors?.config?.url });
-        break;
+        return onUnAuthorized();
       case ERROR_CODES.BLACKLIST:
         onBlacklist();
         break;
@@ -162,9 +161,9 @@ const setupOnResponseInterceptors = (
     }
 
     const finalError = new Error(alertMessage);
-    finalError.code = code;
+    finalError.code = response?.status;
     // finalError.response = errors.response;
-
+    Logger.error(errors, ERROR_TYPE_CRASH.ERROR_API);
     throw finalError;
   };
 

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { resHeight } from 'utils/screen';
+import { resHeight, resWidth } from 'utils/screen';
 import Colors from './colors';
 
 export const Border = {
@@ -7,6 +7,13 @@ export const Border = {
   medium: StyleSheet.hairlineWidth * 2,
   semiBold: StyleSheet.hairlineWidth * 3,
   bold: StyleSheet.hairlineWidth * 4,
+};
+
+export const Histlop = {
+  top: resWidth(50),
+  bottom: resWidth(50),
+  left: resWidth(50),
+  right: resWidth(50),
 };
 
 export const ObjectStyles = {
@@ -17,14 +24,11 @@ export const ObjectStyles = {
     shadowOpacity: 0.2,
   },
   buttonShadow: {
-    shadowColor: Colors.black,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowColor: Colors.black50,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 10,
+    shadowOpacity: 0.3,
+    elevation: -8,
   },
   itemBorderBottom: {
     borderBottomWidth: Border.thin,
@@ -41,8 +45,8 @@ export const ObjectStyles = {
     elevation: 2,
   },
   cardShadow: {
-    shadowColor: Colors.periwinkleBlue25,
     shadowOffset: { width: 0, height: 1 },
+    shadowColor: Colors.polo_blue,
     shadowOpacity: 1,
     shadowRadius: 2.62,
     elevation: 4,
@@ -52,13 +56,20 @@ export const ObjectStyles = {
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 16,
     shadowOpacity: 1,
-    elevation: 8,
+    elevation: -8,
   },
   bottomShadow: {
     shadowColor: Colors.black15,
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 1,
     shadowRadius: 2.62,
+    elevation: 14,
+  },
+  modalLightGreenShadow: {
+    shadowColor: Colors.lightGreen,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 2,
+    shadowRadius: 10,
     elevation: 14,
   },
 };

@@ -3,7 +3,7 @@ import Colors from 'constant/colors';
 
 const styles = StyleSheet.create({
   line: {
-    borderBottomColor: Colors.polo_blue,
+    borderBottomColor: Colors.veryLightPink,
     borderBottomWidth: 1,
     opacity: 0.5,
   },

@@ -22,9 +22,6 @@ const CommonButton = ({
   children,
 }) => {
   const toRenderItem = children || <Text style={[styles.buttonText, textStyle]}>{title}</Text>;
-  if (isLoading) {
-    return <ActivityIndicator style={styleActivator} color="white" size="small" />;
-  }
 
   const gradientButton = () => {
     return (
@@ -35,7 +32,11 @@ const CommonButton = ({
           colors={disabled ? [Colors.gray, Colors.gray] : colors}
           style={[styles.linearGradient, { borderRadius }, linearStyle]}
         >
-          {toRenderItem}
+          {isLoading ? (
+            <ActivityIndicator style={styleActivator} color="white" size="small" />
+          ) : (
+            toRenderItem
+          )}
         </LinearGradient>
       </TouchableOpacity>
     );
@@ -48,7 +49,11 @@ const CommonButton = ({
         style={[styles.flatButton, { borderRadius }, style]}
         disabled={disabled}
       >
-        {toRenderItem}
+        {isLoading ? (
+          <ActivityIndicator style={styleActivator} color="white" size="small" />
+        ) : (
+          toRenderItem
+        )}
       </TouchableOpacity>
     );
   };
@@ -60,7 +65,7 @@ CommonButton.propTypes = {
   style: ViewPropTypes.style,
   styleActivator: ViewPropTypes.style,
   linearStyle: ViewPropTypes.style,
-  textStyle: ViewPropTypes.style,
+  textStyle: Text.propTypes.style,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onPress: PropTypes.func,
   isLoading: PropTypes.bool,

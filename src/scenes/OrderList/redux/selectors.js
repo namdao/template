@@ -1,4 +1,4 @@
-const getListOrderDraft = (state) => state.data.orderList.listDraft;
+const getListOrderDraft = (state) => state.data.orderList;
 
 const OrderListSelectors = {
   getListOrderDraft,

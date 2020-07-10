@@ -14,7 +14,7 @@ const DescriptionContent = ({ updateMode, codePushDescription }) => {
       </View>
     );
   }
-  if (updateMode !== UPDATE_MODE.CODE_PUSH) {
+  if (updateMode === UPDATE_MODE.CODE_PUSH) {
     return (
       <View style={styles.descriptionWrapper}>
         <Text style={styles.timeToUpdateTitle}>Đã đến lúc cập nhật</Text>

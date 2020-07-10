@@ -14,4 +14,11 @@ export default {
   sign_in: 'Sign in',
   search_placeholder: 'Search name or phone',
   title_order_draft: 'Follow orders',
+  /**
+   * Menu tab
+   */
+  tab_home: 'Home',
+  tab_order: 'Order',
+  tab_settings: 'Settings',
+  tab_profile: 'Profile',
 };

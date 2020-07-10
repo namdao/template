@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import SignSelector from 'scenes/Sign/redux/selectors';
+import SessionSelector from 'services/Session/selectors';
 import MainNavigator from './MainNavigator';
 
 const mapStateToProps = (state) => ({
-  role: SignSelector.getRoleUser(state),
+  token: SessionSelector.getToken(state),
 });
 export default connect(mapStateToProps, null)(MainNavigator);

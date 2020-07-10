@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
-import { Field } from 'redux-form';
 import { l10n } from 'languages';
-import reduxFormConstants from 'scenes/Sign/constants/reduxFormConstants';
+import FormConstants from 'scenes/Sign/constants/formConstants';
 import Feather from 'react-native-vector-icons/Feather';
-import Helper from 'scenes/Sign/helper/validate';
 import Colors from 'constant/colors';
 import Input from 'components/form/Input';
 import styles from '../styles';
 
-const { FORM_LOGIN } = reduxFormConstants;
+const { FORM_LOGIN } = FormConstants;
 const { FIELDS } = FORM_LOGIN;
 export default class PasswordField extends PureComponent {
   state = {
@@ -34,31 +32,21 @@ export default class PasswordField extends PureComponent {
 
   iconLeft = () => <Feather name="lock" color={Colors.tealishGreen} size={20} />;
 
-  renderPasswordInput = (fieldProps) => {
+  render() {
+    const { showPassword } = this.state;
     return (
       <Input
         containerStyle={[styles.inputContainer]}
         inputStyle={styles.inputField}
         renderRightComponent={this.iconRight}
         renderLeftComponent={this.iconLeft}
-        errorTextStyle={styles.errorText}
-        {...fieldProps}
-      />
-    );
-  };
-
-  render() {
-    const { showPassword } = this.state;
-    return (
-      <Field
+        name={FIELDS.PASSWORD}
         inputProps={{
           placeholder: l10n.pass_placeholder,
           returnKeyType: 'done',
           secureTextEntry: !showPassword,
         }}
-        name={FIELDS.PASSWORD}
-        component={this.renderPasswordInput}
-        validate={[Helper.requiredField, Helper.validPassword]}
+        {...this.props}
       />
     );
   }

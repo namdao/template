@@ -14,6 +14,13 @@ export default {
   sign_in: 'Đăng nhập',
   search_placeholder: 'Tìm họ tên hoặc đt',
   /**
+   * Menu tab
+   */
+  tab_home: 'trang chủ',
+  tab_order: 'đơn hàng',
+  tab_settings: 'thông báo',
+  tab_profile: 'tài khoản',
+  /**
    * Order Draft Scence
    */
   title_order_draft: 'Theo dõi đơn hàng',

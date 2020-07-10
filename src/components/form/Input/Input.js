@@ -7,84 +7,85 @@ import styles from './styles';
 
 const Input = ({
   errorVisible,
-  input,
-  meta: { touched, error },
+  name,
+  touched,
+  errors,
   containerStyle,
   inputStyle,
   inputErrorStyle,
   errorTextStyle,
   renderRightComponent,
   renderLeftComponent,
-  inputProps,
-  formatOnBlur,
+  handleChange,
+  handleBlur,
+  // formatOnBlur,
   onFocusCallback,
   onLayout,
-}) => (
-  <>
-    <View onLayout={onLayout} style={[styles.container, containerStyle]}>
-      {renderLeftComponent()}
-      <TextInput
-        style={[
-          styles.input,
-          error && touched ? { ...styles.errorBorder, ...inputErrorStyle } : null,
-          inputStyle,
-        ]}
-        selectionColor={Colors.black}
-        {...input}
-        // TextInput only receive value type String
-        value={input?.value ? `${input.value}` : ''}
-        {...inputProps}
-        onFocus={() => {
-          input.onFocus();
-          onFocusCallback();
-        }}
-        onBlur={() => input.onBlur(formatOnBlur(input.value))}
-      />
-      {renderRightComponent()}
-    </View>
-    {errorVisible && error && touched && (
-      <Text style={[styles.errorText, errorTextStyle]}>{error}</Text>
-    )}
-  </>
-);
+  inputProps,
+}) => {
+  return (
+    <>
+      <View onLayout={onLayout} style={[styles.container, containerStyle]}>
+        {renderLeftComponent()}
+        <TextInput
+          style={[
+            styles.input,
+            errors[name] && touched[name] ? { ...styles.errorBorder, ...inputErrorStyle } : null,
+            inputStyle,
+          ]}
+          autoCorrect={false}
+          selectionColor={Colors.black}
+          onChangeText={handleChange(name)}
+          onFocus={() => {
+            // input.onFocus();
+            onFocusCallback();
+          }}
+          // value={values[name]}
+          {...inputProps}
+          onBlur={handleBlur(name)}
+        />
+        {renderRightComponent()}
+      </View>
+      {errorVisible && errors[name] && touched[name] && (
+        <Text style={[styles.errorText, errorTextStyle]}>{errors[name]}</Text>
+      )}
+    </>
+  );
+};
 
 Input.propTypes = {
   errorVisible: PropTypes.bool,
-  formatOnBlur: PropTypes.func,
-  input: PropTypes.shape({}).isRequired,
-  meta: PropTypes.shape({
-    touched: PropTypes.bool,
-    error: PropTypes.string,
-  }),
-  required: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  // formatOnBlur: PropTypes.func,
+  touched: PropTypes.shape({}),
+  errors: PropTypes.shape({}),
   onFocusCallback: PropTypes.func,
   containerStyle: PropTypes.oneOfType(PropTypes.arrayOf(PropTypes.shape({}), PropTypes.shape({}))),
   inputStyle: PropTypes.shape({}),
   inputErrorStyle: PropTypes.shape({}),
   errorTextStyle: PropTypes.shape({}),
-  inputProps: PropTypes.shape({}),
   renderRightComponent: PropTypes.func,
   renderLeftComponent: PropTypes.func,
+  inputProps: PropTypes.shape({}),
   onLayout: PropTypes.func,
 };
 
 Input.defaultProps = {
   errorVisible: true,
-  formatOnBlur: (value) => value,
-  meta: {
-    touched: false,
-    error: '',
-  },
-  required: false,
+  // formatOnBlur: (value) => value,
+  touched: PropTypes.shape({}),
+  errors: {},
   onFocusCallback: doNothing,
   containerStyle: [],
   inputStyle: null,
   inputErrorStyle: null,
   errorTextStyle: null,
-  inputProps: null,
   renderRightComponent: doNothing,
   renderLeftComponent: doNothing,
   onLayout: doNothing,
+  inputProps: {},
 };
 
 export default Input;

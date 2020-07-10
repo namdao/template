@@ -35,10 +35,11 @@ export default class SwipeView extends Component {
 
   getPreviewAnimation = (toValue, delay) => {
     const { previewDuration } = this.props;
-    Animated.timing(this.translateX, {
+    return Animated.timing(this.translateX, {
       duration: previewDuration,
       toValue,
       delay,
+      useNativeDriver: true,
     });
   };
 
@@ -184,6 +185,7 @@ export default class SwipeView extends Component {
     Animated.timing(this.translateX, {
       duration: 0,
       toValue: 0,
+      useNativeDriver: true,
     }).start();
   };
 
@@ -217,6 +219,7 @@ export default class SwipeView extends Component {
       Animated.timing(this.translateX, {
         duration: swipeDuration,
         toValue,
+        useNativeDriver: true,
       }).start(() => {
         this.swipeInitialX = null;
         this.horizontalSwipeGestureBegan = false;
@@ -228,7 +231,7 @@ export default class SwipeView extends Component {
 
   renderVisibleContent = () => {
     const { renderVisibleContent } = this.props;
-    renderVisibleContent && renderVisibleContent();
+    return renderVisibleContent();
   };
 
   renderRowContent = () => {
@@ -364,9 +367,6 @@ SwipeView.propTypes = {
    * Right view to render behind the item view.
    */
   renderRightView: PropTypes.func,
-  /**
-   *
-   */
   onTouchMove: PropTypes.func,
 };
 

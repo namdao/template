@@ -1,16 +1,13 @@
 import React from 'react';
-// import { Alert } from 'react-native';
+import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import SetupAxios from 'manager/axiosManager';
+import { l10n } from 'languages';
 
 class CommonService extends React.Component {
   constructor(props) {
     super(props);
-    SetupAxios.setupOnResponseInterceptors(
-      this.onReceivedToken,
-      this.onUnauthorized,
-      this.onBlacklist
-    );
+    SetupAxios.setupOnResponseInterceptors(this.onUnauthorized, this.onBlacklist);
     /**
      * initial setup token for prevent caching view load api
      * without login token setted -> 401
@@ -23,6 +20,14 @@ class CommonService extends React.Component {
     checkAutoLogin();
   }
 
+  componentDidUpdate(prevProps) {
+    const { token, checkAutoLogin } = this.props;
+    prevProps.token !== token && SetupAxios.setHeaderToken(token, 'updated');
+    if (token === '') {
+      checkAutoLogin();
+    }
+  }
+
   /** update axios header token when received new one */
   onReceivedToken = (newToken) => {
     const { updateToken, token } = this.props;
@@ -31,20 +36,19 @@ class CommonService extends React.Component {
     }
   };
 
-  onUnauthorized = ({ url }) => {
-    console.log(url);
-    // const { logout, sessionStatus } = this.props;
-    // if (sessionStatus !== SESSION_STATUS.AUTHORIZED || this.alreadyDisplayUnauthorized) return;
-    // this.alreadyDisplayUnauthorized = true;
-    // Alert.alert(l10n.alert, l10n.session_expired_description, [
-    //   {
-    //     text: l10n.alert_re_login,
-    //     onPress: () => {
-    //       this.alreadyDisplayUnauthorized = false;
-    //       logout({ url });
-    //     },
-    //   },
-    // ]);
+  onUnauthorized = () => {
+    const { resetAllApp } = this.props;
+    if (this.alreadyDisplayUnauthorized) return;
+    this.alreadyDisplayUnauthorized = true;
+    Alert.alert(l10n.alert, l10n.session_expired_description, [
+      {
+        text: l10n.alert_re_login,
+        onPress: () => {
+          this.alreadyDisplayUnauthorized = false;
+          resetAllApp();
+        },
+      },
+    ]);
   };
 
   onBlacklist = () => {
@@ -63,7 +67,7 @@ CommonService.propTypes = {
   checkAutoLogin: PropTypes.func.isRequired,
   updateToken: PropTypes.func.isRequired,
   token: PropTypes.string,
-  // logout: PropTypes.func.isRequired,
+  resetAllApp: PropTypes.func.isRequired,
   // sessionStatus: PropTypes.string.isRequired,
 };
 

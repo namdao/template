@@ -1,8 +1,8 @@
-const reduxFormConstants = {
+const formConstants = {
   FORM_LOGIN: {
     NAME: 'LOGIN',
     FIELDS: {
-      IDENTIFY: 'identity',
+      IDENTITY: 'identity',
       PASSWORD: 'password',
     },
   },
@@ -19,4 +19,4 @@ const reduxFormConstants = {
   },
 };
 
-export default reduxFormConstants;
+export default formConstants;
