@@ -91,7 +91,7 @@ const CustomTabBar = (propsTabBar) => {
                   ActionBtnRef.current.showContent && ActionBtnRef.current.showContent();
                 }}
                 name="ios-add-circle"
-                size={50}
+                size={44}
                 color="white"
                 iconStyles={styles.btnIcon}
               />

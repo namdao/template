@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 import Colors from 'constant/colors';
-import Screen, { resWidth, resHeight, perWidth } from 'utils/screen';
+import { resWidth, resHeight } from 'utils/screen';
 
 import Common from 'constant/commonStyles';
 
-const { alignSeftCenter, spaceBetween, flexDirectionRow } = Common;
+const { spaceBetween, flexDirectionRow } = Common;
 export default StyleSheet.create({
   row: {
     ...flexDirectionRow,
@@ -19,18 +19,11 @@ export default StyleSheet.create({
     elevation: 8,
   },
   btnContainer: {
-    position: 'absolute',
-    borderRadius: resWidth(30),
-    left: perWidth(43),
-    zIndex: 9,
     backgroundColor: Colors.mainBlue2,
-    bottom: resHeight(25) + Screen.getBottomDevice(),
   },
   btnIcon: {
-    ...alignSeftCenter,
     paddingVertical: 0,
-    top: resWidth(2),
-    paddingHorizontal: resWidth(7),
+    top: resWidth(3),
   },
   btnRow: {
     ...flexDirectionRow,
