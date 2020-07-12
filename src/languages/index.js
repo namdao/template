@@ -13,9 +13,9 @@ export const l10n = new LocalizedStrings({
 
 export const setLanguage = async (langCode) => {
   const currentLang = l10n.getLanguage();
-  Logger.log('-------- current display Lang:', l10n.getLanguage());
-  Logger.log('-------- new Setting display language:', langCode, typeof langCode);
-  Logger.log('-------- device Lang:', l10n.getInterfaceLanguage());
+  Logger.log(`-------- current display Lang: ${l10n.getLanguage()}`);
+  Logger.log(`-------- new Setting display language:' ${langCode}, ${typeof langCode}`);
+  Logger.log(`-------- device Lang:', ${l10n.getInterfaceLanguage()}`);
 
   if (!langCode) {
     Logger.log('-------- user not yet set display language');
@@ -27,5 +27,5 @@ export const setLanguage = async (langCode) => {
   }
 
   l10n.setLanguage(langCode);
-  Logger.log('-------- after change display Lang:', l10n.getLanguage());
+  Logger.log(`-------- after change display Lang:, ${l10n.getLanguage()}`);
 };

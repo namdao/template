@@ -41,6 +41,6 @@ export default class CrashlyticsManager {
    * Set log data
    */
   writeLog = (log) => {
-    Crashlytics().log(...log);
+    Crashlytics().log(log);
   };
 }

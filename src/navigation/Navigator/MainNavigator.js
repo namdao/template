@@ -31,8 +31,8 @@ export default class MainNavigator extends PureComponent {
         screenOptions={{ gestureEnabled: CONFIG.SWIPE_BACK.FALSE }}
         headerMode={CONFIG.HEADER.NONE}
       >
-        <AppStack.Screen name={STACK.SPLASH} component={Splash} />
         <AppStack.Screen name={STACK.AUTH_NAVIGATOR} component={AuthNavigator} />
+        <AppStack.Screen name={STACK.SPLASH} component={Splash} />
       </AppStack.Navigator>
     );
   };
